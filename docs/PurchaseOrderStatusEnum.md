@@ -1,0 +1,19 @@
+# PurchaseOrderStatusEnum
+
+## Enum
+
+
+* `DRAFT` (value: `"DRAFT"`)
+
+* `SUBMITTED` (value: `"SUBMITTED"`)
+
+* `AUTHORIZED` (value: `"AUTHORIZED"`)
+
+* `BILLED` (value: `"BILLED"`)
+
+* `DELETED` (value: `"DELETED"`)
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
