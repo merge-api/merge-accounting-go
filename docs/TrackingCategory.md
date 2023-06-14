@@ -4,16 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] [readonly] 
-**RemoteId** | Pointer to **NullableString** | The third-party API ID of the matching object. | [optional] 
-**RemoteData** | Pointer to [**[]RemoteData**](RemoteData.md) |  | [optional] [readonly] 
 **Name** | Pointer to **NullableString** | The tracking category&#39;s name. | [optional] 
-**Status** | Pointer to [**NullableStatus7d1Enum**](Status7d1Enum.md) | The tracking category&#39;s status. | [optional] 
-**CategoryType** | Pointer to [**NullableCategoryTypeEnum**](CategoryTypeEnum.md) | The tracking category’s type. | [optional] 
+**Status** | Pointer to [**NullableStatus7d1Enum**](Status7d1Enum.md) | The tracking category&#39;s status.  * &#x60;ACTIVE&#x60; - ACTIVE * &#x60;ARCHIVED&#x60; - ARCHIVED | [optional] 
+**CategoryType** | Pointer to [**NullableCategoryTypeEnum**](CategoryTypeEnum.md) | The tracking category’s type.  * &#x60;CLASS&#x60; - CLASS * &#x60;DEPARTMENT&#x60; - DEPARTMENT | [optional] 
 **ParentCategory** | Pointer to **NullableString** | ID of the parent tracking category. | [optional] 
 **Company** | Pointer to **NullableString** | The company the tracking category belongs to. | [optional] 
 **RemoteWasDeleted** | Pointer to **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
+**Id** | Pointer to **string** |  | [optional] [readonly] 
+**RemoteId** | Pointer to **NullableString** | The third-party API ID of the matching object. | [optional] 
 **FieldMappings** | Pointer to **map[string]interface{}** |  | [optional] [readonly] 
+**ModifiedAt** | Pointer to **time.Time** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 
+**RemoteData** | Pointer to [**[]RemoteData**](RemoteData.md) |  | [optional] [readonly] 
 
 ## Methods
 
@@ -34,101 +35,6 @@ NewTrackingCategoryWithDefaults instantiates a new TrackingCategory object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
-
-`func (o *TrackingCategory) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *TrackingCategory) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *TrackingCategory) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *TrackingCategory) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### GetRemoteId
-
-`func (o *TrackingCategory) GetRemoteId() string`
-
-GetRemoteId returns the RemoteId field if non-nil, zero value otherwise.
-
-### GetRemoteIdOk
-
-`func (o *TrackingCategory) GetRemoteIdOk() (*string, bool)`
-
-GetRemoteIdOk returns a tuple with the RemoteId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRemoteId
-
-`func (o *TrackingCategory) SetRemoteId(v string)`
-
-SetRemoteId sets RemoteId field to given value.
-
-### HasRemoteId
-
-`func (o *TrackingCategory) HasRemoteId() bool`
-
-HasRemoteId returns a boolean if a field has been set.
-
-### SetRemoteIdNil
-
-`func (o *TrackingCategory) SetRemoteIdNil(b bool)`
-
- SetRemoteIdNil sets the value for RemoteId to be an explicit nil
-
-### UnsetRemoteId
-`func (o *TrackingCategory) UnsetRemoteId()`
-
-UnsetRemoteId ensures that no value is present for RemoteId, not even an explicit nil
-### GetRemoteData
-
-`func (o *TrackingCategory) GetRemoteData() []RemoteData`
-
-GetRemoteData returns the RemoteData field if non-nil, zero value otherwise.
-
-### GetRemoteDataOk
-
-`func (o *TrackingCategory) GetRemoteDataOk() (*[]RemoteData, bool)`
-
-GetRemoteDataOk returns a tuple with the RemoteData field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRemoteData
-
-`func (o *TrackingCategory) SetRemoteData(v []RemoteData)`
-
-SetRemoteData sets RemoteData field to given value.
-
-### HasRemoteData
-
-`func (o *TrackingCategory) HasRemoteData() bool`
-
-HasRemoteData returns a boolean if a field has been set.
-
-### SetRemoteDataNil
-
-`func (o *TrackingCategory) SetRemoteDataNil(b bool)`
-
- SetRemoteDataNil sets the value for RemoteData to be an explicit nil
-
-### UnsetRemoteData
-`func (o *TrackingCategory) UnsetRemoteData()`
-
-UnsetRemoteData ensures that no value is present for RemoteData, not even an explicit nil
 ### GetName
 
 `func (o *TrackingCategory) GetName() string`
@@ -329,6 +235,66 @@ SetRemoteWasDeleted sets RemoteWasDeleted field to given value.
 
 HasRemoteWasDeleted returns a boolean if a field has been set.
 
+### GetId
+
+`func (o *TrackingCategory) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *TrackingCategory) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *TrackingCategory) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *TrackingCategory) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetRemoteId
+
+`func (o *TrackingCategory) GetRemoteId() string`
+
+GetRemoteId returns the RemoteId field if non-nil, zero value otherwise.
+
+### GetRemoteIdOk
+
+`func (o *TrackingCategory) GetRemoteIdOk() (*string, bool)`
+
+GetRemoteIdOk returns a tuple with the RemoteId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoteId
+
+`func (o *TrackingCategory) SetRemoteId(v string)`
+
+SetRemoteId sets RemoteId field to given value.
+
+### HasRemoteId
+
+`func (o *TrackingCategory) HasRemoteId() bool`
+
+HasRemoteId returns a boolean if a field has been set.
+
+### SetRemoteIdNil
+
+`func (o *TrackingCategory) SetRemoteIdNil(b bool)`
+
+ SetRemoteIdNil sets the value for RemoteId to be an explicit nil
+
+### UnsetRemoteId
+`func (o *TrackingCategory) UnsetRemoteId()`
+
+UnsetRemoteId ensures that no value is present for RemoteId, not even an explicit nil
 ### GetFieldMappings
 
 `func (o *TrackingCategory) GetFieldMappings() map[string]interface{}`
@@ -364,6 +330,66 @@ HasFieldMappings returns a boolean if a field has been set.
 `func (o *TrackingCategory) UnsetFieldMappings()`
 
 UnsetFieldMappings ensures that no value is present for FieldMappings, not even an explicit nil
+### GetModifiedAt
+
+`func (o *TrackingCategory) GetModifiedAt() time.Time`
+
+GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
+
+### GetModifiedAtOk
+
+`func (o *TrackingCategory) GetModifiedAtOk() (*time.Time, bool)`
+
+GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifiedAt
+
+`func (o *TrackingCategory) SetModifiedAt(v time.Time)`
+
+SetModifiedAt sets ModifiedAt field to given value.
+
+### HasModifiedAt
+
+`func (o *TrackingCategory) HasModifiedAt() bool`
+
+HasModifiedAt returns a boolean if a field has been set.
+
+### GetRemoteData
+
+`func (o *TrackingCategory) GetRemoteData() []RemoteData`
+
+GetRemoteData returns the RemoteData field if non-nil, zero value otherwise.
+
+### GetRemoteDataOk
+
+`func (o *TrackingCategory) GetRemoteDataOk() (*[]RemoteData, bool)`
+
+GetRemoteDataOk returns a tuple with the RemoteData field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoteData
+
+`func (o *TrackingCategory) SetRemoteData(v []RemoteData)`
+
+SetRemoteData sets RemoteData field to given value.
+
+### HasRemoteData
+
+`func (o *TrackingCategory) HasRemoteData() bool`
+
+HasRemoteData returns a boolean if a field has been set.
+
+### SetRemoteDataNil
+
+`func (o *TrackingCategory) SetRemoteDataNil(b bool)`
+
+ SetRemoteDataNil sets the value for RemoteData to be an explicit nil
+
+### UnsetRemoteData
+`func (o *TrackingCategory) UnsetRemoteData()`
+
+UnsetRemoteData ensures that no value is present for RemoteData, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

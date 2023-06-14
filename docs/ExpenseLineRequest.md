@@ -6,12 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RemoteId** | Pointer to **NullableString** | The third-party API ID of the matching object. | [optional] 
 **Item** | Pointer to **NullableString** | The line&#39;s item. | [optional] 
-**NetAmount** | Pointer to **NullableFloat32** | The line&#39;s net amount. | [optional] 
+**NetAmount** | Pointer to **NullableFloat64** | The line&#39;s net amount. | [optional] 
 **TrackingCategory** | Pointer to **NullableString** |  | [optional] 
 **TrackingCategories** | Pointer to **[]string** |  | [optional] 
 **Company** | Pointer to **NullableString** | The company the line belongs to. | [optional] 
 **Account** | Pointer to **NullableString** | The expense&#39;s payment account. | [optional] 
+**Contact** | Pointer to **NullableString** | The expense&#39;s contact. | [optional] 
 **Description** | Pointer to **NullableString** | The description of the item that was purchased by the company. | [optional] 
+**ExchangeRate** | Pointer to **NullableFloat64** | The expense line item&#39;s exchange rate. | [optional] 
 **IntegrationParams** | Pointer to **map[string]interface{}** |  | [optional] 
 **LinkedAccountParams** | Pointer to **map[string]interface{}** |  | [optional] 
 
@@ -106,20 +108,20 @@ HasItem returns a boolean if a field has been set.
 UnsetItem ensures that no value is present for Item, not even an explicit nil
 ### GetNetAmount
 
-`func (o *ExpenseLineRequest) GetNetAmount() float32`
+`func (o *ExpenseLineRequest) GetNetAmount() float64`
 
 GetNetAmount returns the NetAmount field if non-nil, zero value otherwise.
 
 ### GetNetAmountOk
 
-`func (o *ExpenseLineRequest) GetNetAmountOk() (*float32, bool)`
+`func (o *ExpenseLineRequest) GetNetAmountOk() (*float64, bool)`
 
 GetNetAmountOk returns a tuple with the NetAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetAmount
 
-`func (o *ExpenseLineRequest) SetNetAmount(v float32)`
+`func (o *ExpenseLineRequest) SetNetAmount(v float64)`
 
 SetNetAmount sets NetAmount field to given value.
 
@@ -269,6 +271,41 @@ HasAccount returns a boolean if a field has been set.
 `func (o *ExpenseLineRequest) UnsetAccount()`
 
 UnsetAccount ensures that no value is present for Account, not even an explicit nil
+### GetContact
+
+`func (o *ExpenseLineRequest) GetContact() string`
+
+GetContact returns the Contact field if non-nil, zero value otherwise.
+
+### GetContactOk
+
+`func (o *ExpenseLineRequest) GetContactOk() (*string, bool)`
+
+GetContactOk returns a tuple with the Contact field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContact
+
+`func (o *ExpenseLineRequest) SetContact(v string)`
+
+SetContact sets Contact field to given value.
+
+### HasContact
+
+`func (o *ExpenseLineRequest) HasContact() bool`
+
+HasContact returns a boolean if a field has been set.
+
+### SetContactNil
+
+`func (o *ExpenseLineRequest) SetContactNil(b bool)`
+
+ SetContactNil sets the value for Contact to be an explicit nil
+
+### UnsetContact
+`func (o *ExpenseLineRequest) UnsetContact()`
+
+UnsetContact ensures that no value is present for Contact, not even an explicit nil
 ### GetDescription
 
 `func (o *ExpenseLineRequest) GetDescription() string`
@@ -304,6 +341,41 @@ HasDescription returns a boolean if a field has been set.
 `func (o *ExpenseLineRequest) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetExchangeRate
+
+`func (o *ExpenseLineRequest) GetExchangeRate() float64`
+
+GetExchangeRate returns the ExchangeRate field if non-nil, zero value otherwise.
+
+### GetExchangeRateOk
+
+`func (o *ExpenseLineRequest) GetExchangeRateOk() (*float64, bool)`
+
+GetExchangeRateOk returns a tuple with the ExchangeRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExchangeRate
+
+`func (o *ExpenseLineRequest) SetExchangeRate(v float64)`
+
+SetExchangeRate sets ExchangeRate field to given value.
+
+### HasExchangeRate
+
+`func (o *ExpenseLineRequest) HasExchangeRate() bool`
+
+HasExchangeRate returns a boolean if a field has been set.
+
+### SetExchangeRateNil
+
+`func (o *ExpenseLineRequest) SetExchangeRateNil(b bool)`
+
+ SetExchangeRateNil sets the value for ExchangeRate to be an explicit nil
+
+### UnsetExchangeRate
+`func (o *ExpenseLineRequest) UnsetExchangeRate()`
+
+UnsetExchangeRate ensures that no value is present for ExchangeRate, not even an explicit nil
 ### GetIntegrationParams
 
 `func (o *ExpenseLineRequest) GetIntegrationParams() map[string]interface{}`

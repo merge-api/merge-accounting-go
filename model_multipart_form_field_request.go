@@ -21,7 +21,7 @@ type MultipartFormFieldRequest struct {
 	Name string `json:"name"`
 	// The data for the form field.
 	Data string `json:"data"`
-	// The encoding of the value of `data`. Defaults to `RAW` if not defined.
+	// The encoding of the value of `data`. Defaults to `RAW` if not defined.  * `RAW` - RAW * `BASE64` - BASE64 * `GZIP_BASE64` - GZIP_BASE64
 	Encoding NullableEncodingEnum `json:"encoding,omitempty"`
 	// The file name of the form field, if the field is for a file.
 	FileName NullableString `json:"file_name,omitempty"`

@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// AddressTypeEnum the model 'AddressTypeEnum'
+// AddressTypeEnum * `BILLING` - BILLING * `SHIPPING` - SHIPPING
 type AddressTypeEnum string
 
 // apologies but this is to get around an import error

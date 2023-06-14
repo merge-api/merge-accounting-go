@@ -13,6 +13,7 @@ package merge_accounting_client
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // VendorCreditLine # The VendorCreditLine Object ### Description The `VendorCreditLine` object is used to represent a vendor credit's line items.  ### Usage Example Fetch from the `GET VendorCredit` endpoint and view the vendor credit's line items.
@@ -20,7 +21,7 @@ type VendorCreditLine struct {
 	// The third-party API ID of the matching object.
 	RemoteId NullableString `json:"remote_id,omitempty"`
 	// The full value of the credit.
-	NetAmount NullableFloat32 `json:"net_amount,omitempty"`
+	NetAmount NullableFloat64 `json:"net_amount,omitempty"`
 	// The line's associated tracking category.
 	TrackingCategory NullableString `json:"tracking_category,omitempty"`
 	// The line's associated tracking categories.
@@ -31,6 +32,10 @@ type VendorCreditLine struct {
 	Account NullableString `json:"account,omitempty"`
 	// The company the line belongs to.
 	Company NullableString `json:"company,omitempty"`
+	// The vendor credit line item's exchange rate.
+	ExchangeRate NullableFloat64 `json:"exchange_rate,omitempty"`
+	// This is the datetime that this object was last updated by Merge
+	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// raw json response by property name
 	ResponseRaw map[string]json.RawMessage `json:"-"`
 }
@@ -96,9 +101,9 @@ func (o *VendorCreditLine) UnsetRemoteId() {
 }
 
 // GetNetAmount returns the NetAmount field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *VendorCreditLine) GetNetAmount() float32 {
+func (o *VendorCreditLine) GetNetAmount() float64 {
 	if o == nil || o.NetAmount.Get() == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.NetAmount.Get()
@@ -107,7 +112,7 @@ func (o *VendorCreditLine) GetNetAmount() float32 {
 // GetNetAmountOk returns a tuple with the NetAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *VendorCreditLine) GetNetAmountOk() (*float32, bool) {
+func (o *VendorCreditLine) GetNetAmountOk() (*float64, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -123,8 +128,8 @@ func (o *VendorCreditLine) HasNetAmount() bool {
 	return false
 }
 
-// SetNetAmount gets a reference to the given NullableFloat32 and assigns it to the NetAmount field.
-func (o *VendorCreditLine) SetNetAmount(v float32) {
+// SetNetAmount gets a reference to the given NullableFloat64 and assigns it to the NetAmount field.
+func (o *VendorCreditLine) SetNetAmount(v float64) {
 	o.NetAmount.Set(&v)
 }
 // SetNetAmountNil sets the value for NetAmount to be an explicit nil
@@ -329,6 +334,80 @@ func (o *VendorCreditLine) UnsetCompany() {
 	o.Company.Unset()
 }
 
+// GetExchangeRate returns the ExchangeRate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *VendorCreditLine) GetExchangeRate() float64 {
+	if o == nil || o.ExchangeRate.Get() == nil {
+		var ret float64
+		return ret
+	}
+	return *o.ExchangeRate.Get()
+}
+
+// GetExchangeRateOk returns a tuple with the ExchangeRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *VendorCreditLine) GetExchangeRateOk() (*float64, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ExchangeRate.Get(), o.ExchangeRate.IsSet()
+}
+
+// HasExchangeRate returns a boolean if a field has been set.
+func (o *VendorCreditLine) HasExchangeRate() bool {
+	if o != nil && o.ExchangeRate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExchangeRate gets a reference to the given NullableFloat64 and assigns it to the ExchangeRate field.
+func (o *VendorCreditLine) SetExchangeRate(v float64) {
+	o.ExchangeRate.Set(&v)
+}
+// SetExchangeRateNil sets the value for ExchangeRate to be an explicit nil
+func (o *VendorCreditLine) SetExchangeRateNil() {
+	o.ExchangeRate.Set(nil)
+}
+
+// UnsetExchangeRate ensures that no value is present for ExchangeRate, not even an explicit nil
+func (o *VendorCreditLine) UnsetExchangeRate() {
+	o.ExchangeRate.Unset()
+}
+
+// GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
+func (o *VendorCreditLine) GetModifiedAt() time.Time {
+	if o == nil || o.ModifiedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ModifiedAt
+}
+
+// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VendorCreditLine) GetModifiedAtOk() (*time.Time, bool) {
+	if o == nil || o.ModifiedAt == nil {
+		return nil, false
+	}
+	return o.ModifiedAt, true
+}
+
+// HasModifiedAt returns a boolean if a field has been set.
+func (o *VendorCreditLine) HasModifiedAt() bool {
+	if o != nil && o.ModifiedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
+func (o *VendorCreditLine) SetModifiedAt(v time.Time) {
+	o.ModifiedAt = &v
+}
+
 func (o VendorCreditLine) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.RemoteId.IsSet() {
@@ -351,6 +430,12 @@ func (o VendorCreditLine) MarshalJSON() ([]byte, error) {
 	}
 	if o.Company.IsSet() {
 		toSerialize["company"] = o.Company.Get()
+	}
+	if o.ExchangeRate.IsSet() {
+		toSerialize["exchange_rate"] = o.ExchangeRate.Get()
+	}
+	if o.ModifiedAt != nil {
+		toSerialize["modified_at"] = o.ModifiedAt
 	}
 	return json.Marshal(toSerialize)
 }

@@ -191,6 +191,8 @@ type ApiInvoicesListRequest struct {
 	cursor *string
 	includeDeletedData *bool
 	includeRemoteData *bool
+	issueDateAfter *time.Time
+	issueDateBefore *time.Time
 	modifiedAfter *time.Time
 	modifiedBefore *time.Time
 	pageSize *int32
@@ -230,6 +232,14 @@ func (r ApiInvoicesListRequest) IncludeDeletedData(includeDeletedData bool) ApiI
 }
 func (r ApiInvoicesListRequest) IncludeRemoteData(includeRemoteData bool) ApiInvoicesListRequest {
 	r.includeRemoteData = &includeRemoteData
+	return r
+}
+func (r ApiInvoicesListRequest) IssueDateAfter(issueDateAfter time.Time) ApiInvoicesListRequest {
+	r.issueDateAfter = &issueDateAfter
+	return r
+}
+func (r ApiInvoicesListRequest) IssueDateBefore(issueDateBefore time.Time) ApiInvoicesListRequest {
+	r.issueDateBefore = &issueDateBefore
 	return r
 }
 func (r ApiInvoicesListRequest) ModifiedAfter(modifiedAfter time.Time) ApiInvoicesListRequest {
@@ -326,6 +336,12 @@ func (a *InvoicesApiService) InvoicesListExecute(r ApiInvoicesListRequest) (Pagi
 	}
 	if r.includeRemoteData != nil {
 		localVarQueryParams.Add("include_remote_data", parameterToString(*r.includeRemoteData, ""))
+	}
+	if r.issueDateAfter != nil {
+		localVarQueryParams.Add("issue_date_after", parameterToString(*r.issueDateAfter, ""))
+	}
+	if r.issueDateBefore != nil {
+		localVarQueryParams.Add("issue_date_before", parameterToString(*r.issueDateBefore, ""))
 	}
 	if r.modifiedAfter != nil {
 		localVarQueryParams.Add("modified_after", parameterToString(*r.modifiedAfter, ""))

@@ -43,6 +43,8 @@ type ApiVendorCreditsListRequest struct {
 	modifiedBefore *time.Time
 	pageSize *int32
 	remoteId *string
+	transactionDateAfter *time.Time
+	transactionDateBefore *time.Time
 }
 
 func (r ApiVendorCreditsListRequest) XAccountToken(xAccountToken string) ApiVendorCreditsListRequest {
@@ -87,6 +89,14 @@ func (r ApiVendorCreditsListRequest) PageSize(pageSize int32) ApiVendorCreditsLi
 }
 func (r ApiVendorCreditsListRequest) RemoteId(remoteId string) ApiVendorCreditsListRequest {
 	r.remoteId = &remoteId
+	return r
+}
+func (r ApiVendorCreditsListRequest) TransactionDateAfter(transactionDateAfter time.Time) ApiVendorCreditsListRequest {
+	r.transactionDateAfter = &transactionDateAfter
+	return r
+}
+func (r ApiVendorCreditsListRequest) TransactionDateBefore(transactionDateBefore time.Time) ApiVendorCreditsListRequest {
+	r.transactionDateBefore = &transactionDateBefore
 	return r
 }
 
@@ -164,6 +174,12 @@ func (a *VendorCreditsApiService) VendorCreditsListExecute(r ApiVendorCreditsLis
 	}
 	if r.remoteId != nil {
 		localVarQueryParams.Add("remote_id", parameterToString(*r.remoteId, ""))
+	}
+	if r.transactionDateAfter != nil {
+		localVarQueryParams.Add("transaction_date_after", parameterToString(*r.transactionDateAfter, ""))
+	}
+	if r.transactionDateBefore != nil {
+		localVarQueryParams.Add("transaction_date_before", parameterToString(*r.transactionDateBefore, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

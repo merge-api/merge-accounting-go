@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// AccountStatusEnum the model 'AccountStatusEnum'
+// AccountStatusEnum * `ACTIVE` - ACTIVE * `PENDING` - PENDING * `INACTIVE` - INACTIVE
 type AccountStatusEnum string
 
 // apologies but this is to get around an import error

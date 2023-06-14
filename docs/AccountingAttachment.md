@@ -6,12 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] [readonly] 
 **RemoteId** | Pointer to **NullableString** | The third-party API ID of the matching object. | [optional] 
-**RemoteData** | Pointer to [**[]RemoteData**](RemoteData.md) |  | [optional] [readonly] 
 **FileName** | Pointer to **NullableString** | The attachment&#39;s name. | [optional] 
 **FileUrl** | Pointer to **NullableString** | The attachment&#39;s url. | [optional] 
 **Company** | Pointer to **NullableString** | The company the accounting attachment belongs to. | [optional] 
 **RemoteWasDeleted** | Pointer to **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
 **FieldMappings** | Pointer to **map[string]interface{}** |  | [optional] [readonly] 
+**ModifiedAt** | Pointer to **time.Time** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 
+**RemoteData** | Pointer to [**[]RemoteData**](RemoteData.md) |  | [optional] [readonly] 
 
 ## Methods
 
@@ -92,41 +93,6 @@ HasRemoteId returns a boolean if a field has been set.
 `func (o *AccountingAttachment) UnsetRemoteId()`
 
 UnsetRemoteId ensures that no value is present for RemoteId, not even an explicit nil
-### GetRemoteData
-
-`func (o *AccountingAttachment) GetRemoteData() []RemoteData`
-
-GetRemoteData returns the RemoteData field if non-nil, zero value otherwise.
-
-### GetRemoteDataOk
-
-`func (o *AccountingAttachment) GetRemoteDataOk() (*[]RemoteData, bool)`
-
-GetRemoteDataOk returns a tuple with the RemoteData field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRemoteData
-
-`func (o *AccountingAttachment) SetRemoteData(v []RemoteData)`
-
-SetRemoteData sets RemoteData field to given value.
-
-### HasRemoteData
-
-`func (o *AccountingAttachment) HasRemoteData() bool`
-
-HasRemoteData returns a boolean if a field has been set.
-
-### SetRemoteDataNil
-
-`func (o *AccountingAttachment) SetRemoteDataNil(b bool)`
-
- SetRemoteDataNil sets the value for RemoteData to be an explicit nil
-
-### UnsetRemoteData
-`func (o *AccountingAttachment) UnsetRemoteData()`
-
-UnsetRemoteData ensures that no value is present for RemoteData, not even an explicit nil
 ### GetFileName
 
 `func (o *AccountingAttachment) GetFileName() string`
@@ -292,6 +258,66 @@ HasFieldMappings returns a boolean if a field has been set.
 `func (o *AccountingAttachment) UnsetFieldMappings()`
 
 UnsetFieldMappings ensures that no value is present for FieldMappings, not even an explicit nil
+### GetModifiedAt
+
+`func (o *AccountingAttachment) GetModifiedAt() time.Time`
+
+GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
+
+### GetModifiedAtOk
+
+`func (o *AccountingAttachment) GetModifiedAtOk() (*time.Time, bool)`
+
+GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifiedAt
+
+`func (o *AccountingAttachment) SetModifiedAt(v time.Time)`
+
+SetModifiedAt sets ModifiedAt field to given value.
+
+### HasModifiedAt
+
+`func (o *AccountingAttachment) HasModifiedAt() bool`
+
+HasModifiedAt returns a boolean if a field has been set.
+
+### GetRemoteData
+
+`func (o *AccountingAttachment) GetRemoteData() []RemoteData`
+
+GetRemoteData returns the RemoteData field if non-nil, zero value otherwise.
+
+### GetRemoteDataOk
+
+`func (o *AccountingAttachment) GetRemoteDataOk() (*[]RemoteData, bool)`
+
+GetRemoteDataOk returns a tuple with the RemoteData field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoteData
+
+`func (o *AccountingAttachment) SetRemoteData(v []RemoteData)`
+
+SetRemoteData sets RemoteData field to given value.
+
+### HasRemoteData
+
+`func (o *AccountingAttachment) HasRemoteData() bool`
+
+HasRemoteData returns a boolean if a field has been set.
+
+### SetRemoteDataNil
+
+`func (o *AccountingAttachment) SetRemoteDataNil(b bool)`
+
+ SetRemoteDataNil sets the value for RemoteData to be an explicit nil
+
+### UnsetRemoteData
+`func (o *AccountingAttachment) UnsetRemoteData()`
+
+UnsetRemoteData ensures that no value is present for RemoteData, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

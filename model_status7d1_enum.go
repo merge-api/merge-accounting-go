@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// Status7d1Enum the model 'Status7d1Enum'
+// Status7d1Enum * `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED
 type Status7d1Enum string
 
 // apologies but this is to get around an import error

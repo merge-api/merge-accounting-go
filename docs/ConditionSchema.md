@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **NativeName** | **NullableString** | User-facing *native condition* name. e.g. \&quot;Skip Manager\&quot;. | 
 **FieldName** | **NullableString** | The name of the field on the common model that this condition corresponds to, if they conceptually match. e.g. \&quot;location_type\&quot;. | 
 **IsUnique** | Pointer to **bool** | Whether this condition can only be applied once. If false, the condition can be AND&#39;d together multiple times. | [optional] 
-**ConditionType** | [**ConditionTypeEnum**](ConditionTypeEnum.md) |  | 
+**ConditionType** | [**ConditionTypeEnum**](ConditionTypeEnum.md) | The type of value(s) that can be set for this condition.  * &#x60;BOOLEAN&#x60; - BOOLEAN * &#x60;DATE&#x60; - DATE * &#x60;DATE_TIME&#x60; - DATE_TIME * &#x60;INTEGER&#x60; - INTEGER * &#x60;FLOAT&#x60; - FLOAT * &#x60;STRING&#x60; - STRING * &#x60;LIST_OF_STRINGS&#x60; - LIST_OF_STRINGS | 
 **Operators** | [**[]OperatorSchema**](OperatorSchema.md) | The schemas for the operators that can be used on a condition. | 
 
 ## Methods

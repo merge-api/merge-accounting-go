@@ -21,12 +21,14 @@ type JournalLineRequest struct {
 	RemoteId NullableString `json:"remote_id,omitempty"`
 	Account NullableString `json:"account,omitempty"`
 	// The value of the line item including taxes and other fees.
-	NetAmount NullableFloat32 `json:"net_amount,omitempty"`
+	NetAmount NullableFloat64 `json:"net_amount,omitempty"`
 	TrackingCategory NullableString `json:"tracking_category,omitempty"`
 	TrackingCategories *[]string `json:"tracking_categories,omitempty"`
 	Contact NullableString `json:"contact,omitempty"`
 	// The line's description.
 	Description NullableString `json:"description,omitempty"`
+	// The journal line item's exchange rate.
+	ExchangeRate NullableFloat64 `json:"exchange_rate,omitempty"`
 	IntegrationParams map[string]interface{} `json:"integration_params,omitempty"`
 	LinkedAccountParams map[string]interface{} `json:"linked_account_params,omitempty"`
 	// raw json response by property name
@@ -135,9 +137,9 @@ func (o *JournalLineRequest) UnsetAccount() {
 }
 
 // GetNetAmount returns the NetAmount field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *JournalLineRequest) GetNetAmount() float32 {
+func (o *JournalLineRequest) GetNetAmount() float64 {
 	if o == nil || o.NetAmount.Get() == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.NetAmount.Get()
@@ -146,7 +148,7 @@ func (o *JournalLineRequest) GetNetAmount() float32 {
 // GetNetAmountOk returns a tuple with the NetAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JournalLineRequest) GetNetAmountOk() (*float32, bool) {
+func (o *JournalLineRequest) GetNetAmountOk() (*float64, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -162,8 +164,8 @@ func (o *JournalLineRequest) HasNetAmount() bool {
 	return false
 }
 
-// SetNetAmount gets a reference to the given NullableFloat32 and assigns it to the NetAmount field.
-func (o *JournalLineRequest) SetNetAmount(v float32) {
+// SetNetAmount gets a reference to the given NullableFloat64 and assigns it to the NetAmount field.
+func (o *JournalLineRequest) SetNetAmount(v float64) {
 	o.NetAmount.Set(&v)
 }
 // SetNetAmountNil sets the value for NetAmount to be an explicit nil
@@ -334,6 +336,48 @@ func (o *JournalLineRequest) UnsetDescription() {
 	o.Description.Unset()
 }
 
+// GetExchangeRate returns the ExchangeRate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JournalLineRequest) GetExchangeRate() float64 {
+	if o == nil || o.ExchangeRate.Get() == nil {
+		var ret float64
+		return ret
+	}
+	return *o.ExchangeRate.Get()
+}
+
+// GetExchangeRateOk returns a tuple with the ExchangeRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JournalLineRequest) GetExchangeRateOk() (*float64, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ExchangeRate.Get(), o.ExchangeRate.IsSet()
+}
+
+// HasExchangeRate returns a boolean if a field has been set.
+func (o *JournalLineRequest) HasExchangeRate() bool {
+	if o != nil && o.ExchangeRate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExchangeRate gets a reference to the given NullableFloat64 and assigns it to the ExchangeRate field.
+func (o *JournalLineRequest) SetExchangeRate(v float64) {
+	o.ExchangeRate.Set(&v)
+}
+// SetExchangeRateNil sets the value for ExchangeRate to be an explicit nil
+func (o *JournalLineRequest) SetExchangeRateNil() {
+	o.ExchangeRate.Set(nil)
+}
+
+// UnsetExchangeRate ensures that no value is present for ExchangeRate, not even an explicit nil
+func (o *JournalLineRequest) UnsetExchangeRate() {
+	o.ExchangeRate.Unset()
+}
+
 // GetIntegrationParams returns the IntegrationParams field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *JournalLineRequest) GetIntegrationParams() map[string]interface{} {
 	if o == nil  {
@@ -422,6 +466,9 @@ func (o JournalLineRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
+	}
+	if o.ExchangeRate.IsSet() {
+		toSerialize["exchange_rate"] = o.ExchangeRate.Get()
 	}
 	if o.IntegrationParams != nil {
 		toSerialize["integration_params"] = o.IntegrationParams

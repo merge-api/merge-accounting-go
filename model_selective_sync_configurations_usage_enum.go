@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// SelectiveSyncConfigurationsUsageEnum the model 'SelectiveSyncConfigurationsUsageEnum'
+// SelectiveSyncConfigurationsUsageEnum * `IN_NEXT_SYNC` - IN_NEXT_SYNC * `IN_LAST_SYNC` - IN_LAST_SYNC
 type SelectiveSyncConfigurationsUsageEnum string
 
 // apologies but this is to get around an import error

@@ -13,13 +13,10 @@ package merge_accounting_client
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // ContactRequest # The Contact Object ### Description The `Contact` object refers to either a supplier or a customer.  ### Usage Example Fetch from the `LIST Contacts` endpoint and view a company's contacts.
 type ContactRequest struct {
-	// The third-party API ID of the matching object.
-	RemoteId NullableString `json:"remote_id,omitempty"`
 	// The contact's name.
 	Name NullableString `json:"name,omitempty"`
 	// Whether the contact is a supplier.
@@ -30,12 +27,10 @@ type ContactRequest struct {
 	EmailAddress NullableString `json:"email_address,omitempty"`
 	// The contact's tax number.
 	TaxNumber NullableString `json:"tax_number,omitempty"`
-	// The contact's status
+	// The contact's status  * `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED
 	Status NullableStatus7d1Enum `json:"status,omitempty"`
 	// The currency the contact's transactions are in.
 	Currency NullableString `json:"currency,omitempty"`
-	// When the third party's contact was updated.
-	RemoteUpdatedAt NullableTime `json:"remote_updated_at,omitempty"`
 	// The company the contact belongs to.
 	Company NullableString `json:"company,omitempty"`
 	// `Address` object IDs for the given `Contacts` object.
@@ -63,48 +58,6 @@ func NewContactRequest() *ContactRequest {
 func NewContactRequestWithDefaults() *ContactRequest {
 	this := ContactRequest{}
 	return &this
-}
-
-// GetRemoteId returns the RemoteId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ContactRequest) GetRemoteId() string {
-	if o == nil || o.RemoteId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.RemoteId.Get()
-}
-
-// GetRemoteIdOk returns a tuple with the RemoteId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContactRequest) GetRemoteIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.RemoteId.Get(), o.RemoteId.IsSet()
-}
-
-// HasRemoteId returns a boolean if a field has been set.
-func (o *ContactRequest) HasRemoteId() bool {
-	if o != nil && o.RemoteId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRemoteId gets a reference to the given NullableString and assigns it to the RemoteId field.
-func (o *ContactRequest) SetRemoteId(v string) {
-	o.RemoteId.Set(&v)
-}
-// SetRemoteIdNil sets the value for RemoteId to be an explicit nil
-func (o *ContactRequest) SetRemoteIdNil() {
-	o.RemoteId.Set(nil)
-}
-
-// UnsetRemoteId ensures that no value is present for RemoteId, not even an explicit nil
-func (o *ContactRequest) UnsetRemoteId() {
-	o.RemoteId.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -401,48 +354,6 @@ func (o *ContactRequest) UnsetCurrency() {
 	o.Currency.Unset()
 }
 
-// GetRemoteUpdatedAt returns the RemoteUpdatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ContactRequest) GetRemoteUpdatedAt() time.Time {
-	if o == nil || o.RemoteUpdatedAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.RemoteUpdatedAt.Get()
-}
-
-// GetRemoteUpdatedAtOk returns a tuple with the RemoteUpdatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContactRequest) GetRemoteUpdatedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.RemoteUpdatedAt.Get(), o.RemoteUpdatedAt.IsSet()
-}
-
-// HasRemoteUpdatedAt returns a boolean if a field has been set.
-func (o *ContactRequest) HasRemoteUpdatedAt() bool {
-	if o != nil && o.RemoteUpdatedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRemoteUpdatedAt gets a reference to the given NullableTime and assigns it to the RemoteUpdatedAt field.
-func (o *ContactRequest) SetRemoteUpdatedAt(v time.Time) {
-	o.RemoteUpdatedAt.Set(&v)
-}
-// SetRemoteUpdatedAtNil sets the value for RemoteUpdatedAt to be an explicit nil
-func (o *ContactRequest) SetRemoteUpdatedAtNil() {
-	o.RemoteUpdatedAt.Set(nil)
-}
-
-// UnsetRemoteUpdatedAt ensures that no value is present for RemoteUpdatedAt, not even an explicit nil
-func (o *ContactRequest) UnsetRemoteUpdatedAt() {
-	o.RemoteUpdatedAt.Unset()
-}
-
 // GetCompany returns the Company field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ContactRequest) GetCompany() string {
 	if o == nil || o.Company.Get() == nil {
@@ -617,9 +528,6 @@ func (o *ContactRequest) SetLinkedAccountParams(v map[string]interface{}) {
 
 func (o ContactRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.RemoteId.IsSet() {
-		toSerialize["remote_id"] = o.RemoteId.Get()
-	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
@@ -640,9 +548,6 @@ func (o ContactRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Currency.IsSet() {
 		toSerialize["currency"] = o.Currency.Get()
-	}
-	if o.RemoteUpdatedAt.IsSet() {
-		toSerialize["remote_updated_at"] = o.RemoteUpdatedAt.Get()
 	}
 	if o.Company.IsSet() {
 		toSerialize["company"] = o.Company.Get()

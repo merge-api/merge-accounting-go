@@ -19,13 +19,14 @@ import (
 // Issue struct for Issue
 type Issue struct {
 	Id *string `json:"id,omitempty"`
+	// Status of the issue. Options: ('ONGOING', 'RESOLVED')  * `ONGOING` - ONGOING * `RESOLVED` - RESOLVED
 	Status *IssueStatusEnum `json:"status,omitempty"`
 	ErrorDescription string `json:"error_description"`
 	EndUser *map[string]interface{} `json:"end_user,omitempty"`
 	FirstIncidentTime NullableTime `json:"first_incident_time,omitempty"`
 	LastIncidentTime NullableTime `json:"last_incident_time,omitempty"`
 	IsMuted *bool `json:"is_muted,omitempty"`
-	ErrorDetails *map[string]interface{} `json:"error_details,omitempty"`
+	ErrorDetails *[]string `json:"error_details,omitempty"`
 	// raw json response by property name
 	ResponseRaw map[string]json.RawMessage `json:"-"`
 }
@@ -285,9 +286,9 @@ func (o *Issue) SetIsMuted(v bool) {
 }
 
 // GetErrorDetails returns the ErrorDetails field value if set, zero value otherwise.
-func (o *Issue) GetErrorDetails() map[string]interface{} {
+func (o *Issue) GetErrorDetails() []string {
 	if o == nil || o.ErrorDetails == nil {
-		var ret map[string]interface{}
+		var ret []string
 		return ret
 	}
 	return *o.ErrorDetails
@@ -295,7 +296,7 @@ func (o *Issue) GetErrorDetails() map[string]interface{} {
 
 // GetErrorDetailsOk returns a tuple with the ErrorDetails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Issue) GetErrorDetailsOk() (*map[string]interface{}, bool) {
+func (o *Issue) GetErrorDetailsOk() (*[]string, bool) {
 	if o == nil || o.ErrorDetails == nil {
 		return nil, false
 	}
@@ -311,8 +312,8 @@ func (o *Issue) HasErrorDetails() bool {
 	return false
 }
 
-// SetErrorDetails gets a reference to the given map[string]interface{} and assigns it to the ErrorDetails field.
-func (o *Issue) SetErrorDetails(v map[string]interface{}) {
+// SetErrorDetails gets a reference to the given []string and assigns it to the ErrorDetails field.
+func (o *Issue) SetErrorDetails(v []string) {
 	o.ErrorDetails = &v
 }
 

@@ -196,6 +196,8 @@ type ApiPaymentsListRequest struct {
 	modifiedBefore *time.Time
 	pageSize *int32
 	remoteId *string
+	transactionDateAfter *time.Time
+	transactionDateBefore *time.Time
 }
 
 func (r ApiPaymentsListRequest) XAccountToken(xAccountToken string) ApiPaymentsListRequest {
@@ -248,6 +250,14 @@ func (r ApiPaymentsListRequest) PageSize(pageSize int32) ApiPaymentsListRequest 
 }
 func (r ApiPaymentsListRequest) RemoteId(remoteId string) ApiPaymentsListRequest {
 	r.remoteId = &remoteId
+	return r
+}
+func (r ApiPaymentsListRequest) TransactionDateAfter(transactionDateAfter time.Time) ApiPaymentsListRequest {
+	r.transactionDateAfter = &transactionDateAfter
+	return r
+}
+func (r ApiPaymentsListRequest) TransactionDateBefore(transactionDateBefore time.Time) ApiPaymentsListRequest {
+	r.transactionDateBefore = &transactionDateBefore
 	return r
 }
 
@@ -331,6 +341,12 @@ func (a *PaymentsApiService) PaymentsListExecute(r ApiPaymentsListRequest) (Pagi
 	}
 	if r.remoteId != nil {
 		localVarQueryParams.Add("remote_id", parameterToString(*r.remoteId, ""))
+	}
+	if r.transactionDateAfter != nil {
+		localVarQueryParams.Add("transaction_date_after", parameterToString(*r.transactionDateAfter, ""))
+	}
+	if r.transactionDateBefore != nil {
+		localVarQueryParams.Add("transaction_date_before", parameterToString(*r.transactionDateBefore, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

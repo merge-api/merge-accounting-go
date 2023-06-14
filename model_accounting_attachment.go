@@ -13,6 +13,7 @@ package merge_accounting_client
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // AccountingAttachment # The Accounting Attachment Object ### Description The `AccountingAttachment` object is used to represent a company's attachments.  ### Usage Example Fetch from the `LIST AccountingAttachments` endpoint and view a company's attachments.
@@ -20,7 +21,6 @@ type AccountingAttachment struct {
 	Id *string `json:"id,omitempty"`
 	// The third-party API ID of the matching object.
 	RemoteId NullableString `json:"remote_id,omitempty"`
-	RemoteData []RemoteData `json:"remote_data,omitempty"`
 	// The attachment's name.
 	FileName NullableString `json:"file_name,omitempty"`
 	// The attachment's url.
@@ -30,6 +30,9 @@ type AccountingAttachment struct {
 	// Indicates whether or not this object has been deleted by third party webhooks.
 	RemoteWasDeleted *bool `json:"remote_was_deleted,omitempty"`
 	FieldMappings map[string]interface{} `json:"field_mappings,omitempty"`
+	// This is the datetime that this object was last updated by Merge
+	ModifiedAt *time.Time `json:"modified_at,omitempty"`
+	RemoteData []RemoteData `json:"remote_data,omitempty"`
 	// raw json response by property name
 	ResponseRaw map[string]json.RawMessage `json:"-"`
 }
@@ -123,39 +126,6 @@ func (o *AccountingAttachment) SetRemoteIdNil() {
 // UnsetRemoteId ensures that no value is present for RemoteId, not even an explicit nil
 func (o *AccountingAttachment) UnsetRemoteId() {
 	o.RemoteId.Unset()
-}
-
-// GetRemoteData returns the RemoteData field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AccountingAttachment) GetRemoteData() []RemoteData {
-	if o == nil  {
-		var ret []RemoteData
-		return ret
-	}
-	return o.RemoteData
-}
-
-// GetRemoteDataOk returns a tuple with the RemoteData field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AccountingAttachment) GetRemoteDataOk() (*[]RemoteData, bool) {
-	if o == nil || o.RemoteData == nil {
-		return nil, false
-	}
-	return &o.RemoteData, true
-}
-
-// HasRemoteData returns a boolean if a field has been set.
-func (o *AccountingAttachment) HasRemoteData() bool {
-	if o != nil && o.RemoteData != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRemoteData gets a reference to the given []RemoteData and assigns it to the RemoteData field.
-func (o *AccountingAttachment) SetRemoteData(v []RemoteData) {
-	o.RemoteData = v
 }
 
 // GetFileName returns the FileName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -349,6 +319,71 @@ func (o *AccountingAttachment) SetFieldMappings(v map[string]interface{}) {
 	o.FieldMappings = v
 }
 
+// GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
+func (o *AccountingAttachment) GetModifiedAt() time.Time {
+	if o == nil || o.ModifiedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ModifiedAt
+}
+
+// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountingAttachment) GetModifiedAtOk() (*time.Time, bool) {
+	if o == nil || o.ModifiedAt == nil {
+		return nil, false
+	}
+	return o.ModifiedAt, true
+}
+
+// HasModifiedAt returns a boolean if a field has been set.
+func (o *AccountingAttachment) HasModifiedAt() bool {
+	if o != nil && o.ModifiedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
+func (o *AccountingAttachment) SetModifiedAt(v time.Time) {
+	o.ModifiedAt = &v
+}
+
+// GetRemoteData returns the RemoteData field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AccountingAttachment) GetRemoteData() []RemoteData {
+	if o == nil  {
+		var ret []RemoteData
+		return ret
+	}
+	return o.RemoteData
+}
+
+// GetRemoteDataOk returns a tuple with the RemoteData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AccountingAttachment) GetRemoteDataOk() (*[]RemoteData, bool) {
+	if o == nil || o.RemoteData == nil {
+		return nil, false
+	}
+	return &o.RemoteData, true
+}
+
+// HasRemoteData returns a boolean if a field has been set.
+func (o *AccountingAttachment) HasRemoteData() bool {
+	if o != nil && o.RemoteData != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteData gets a reference to the given []RemoteData and assigns it to the RemoteData field.
+func (o *AccountingAttachment) SetRemoteData(v []RemoteData) {
+	o.RemoteData = v
+}
+
 func (o AccountingAttachment) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -356,9 +391,6 @@ func (o AccountingAttachment) MarshalJSON() ([]byte, error) {
 	}
 	if o.RemoteId.IsSet() {
 		toSerialize["remote_id"] = o.RemoteId.Get()
-	}
-	if o.RemoteData != nil {
-		toSerialize["remote_data"] = o.RemoteData
 	}
 	if o.FileName.IsSet() {
 		toSerialize["file_name"] = o.FileName.Get()
@@ -374,6 +406,12 @@ func (o AccountingAttachment) MarshalJSON() ([]byte, error) {
 	}
 	if o.FieldMappings != nil {
 		toSerialize["field_mappings"] = o.FieldMappings
+	}
+	if o.ModifiedAt != nil {
+		toSerialize["modified_at"] = o.ModifiedAt
+	}
+	if o.RemoteData != nil {
+		toSerialize["remote_data"] = o.RemoteData
 	}
 	return json.Marshal(toSerialize)
 }

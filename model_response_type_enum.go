@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// ResponseTypeEnum the model 'ResponseTypeEnum'
+// ResponseTypeEnum * `JSON` - JSON * `BASE64_GZIP` - BASE64_GZIP
 type ResponseTypeEnum string
 
 // apologies but this is to get around an import error

@@ -21,15 +21,14 @@ type Item struct {
 	Id *string `json:"id,omitempty"`
 	// The third-party API ID of the matching object.
 	RemoteId NullableString `json:"remote_id,omitempty"`
-	RemoteData []RemoteData `json:"remote_data,omitempty"`
 	// The item's name.
 	Name NullableString `json:"name,omitempty"`
-	// The item's status.
+	// The item's status.  * `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED
 	Status NullableStatus7d1Enum `json:"status,omitempty"`
 	// The item's unit price.
-	UnitPrice NullableFloat32 `json:"unit_price,omitempty"`
+	UnitPrice NullableFloat64 `json:"unit_price,omitempty"`
 	// The price at which the item is purchased from a vendor.
-	PurchasePrice NullableFloat32 `json:"purchase_price,omitempty"`
+	PurchasePrice NullableFloat64 `json:"purchase_price,omitempty"`
 	// References the default account used to record a purchase of the item.
 	PurchaseAccount NullableString `json:"purchase_account,omitempty"`
 	// References the default account used to record a sale.
@@ -41,6 +40,9 @@ type Item struct {
 	// Indicates whether or not this object has been deleted by third party webhooks.
 	RemoteWasDeleted *bool `json:"remote_was_deleted,omitempty"`
 	FieldMappings map[string]interface{} `json:"field_mappings,omitempty"`
+	// This is the datetime that this object was last updated by Merge
+	ModifiedAt *time.Time `json:"modified_at,omitempty"`
+	RemoteData []RemoteData `json:"remote_data,omitempty"`
 	// raw json response by property name
 	ResponseRaw map[string]json.RawMessage `json:"-"`
 }
@@ -136,39 +138,6 @@ func (o *Item) UnsetRemoteId() {
 	o.RemoteId.Unset()
 }
 
-// GetRemoteData returns the RemoteData field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Item) GetRemoteData() []RemoteData {
-	if o == nil  {
-		var ret []RemoteData
-		return ret
-	}
-	return o.RemoteData
-}
-
-// GetRemoteDataOk returns a tuple with the RemoteData field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Item) GetRemoteDataOk() (*[]RemoteData, bool) {
-	if o == nil || o.RemoteData == nil {
-		return nil, false
-	}
-	return &o.RemoteData, true
-}
-
-// HasRemoteData returns a boolean if a field has been set.
-func (o *Item) HasRemoteData() bool {
-	if o != nil && o.RemoteData != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRemoteData gets a reference to the given []RemoteData and assigns it to the RemoteData field.
-func (o *Item) SetRemoteData(v []RemoteData) {
-	o.RemoteData = v
-}
-
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Item) GetName() string {
 	if o == nil || o.Name.Get() == nil {
@@ -254,9 +223,9 @@ func (o *Item) UnsetStatus() {
 }
 
 // GetUnitPrice returns the UnitPrice field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Item) GetUnitPrice() float32 {
+func (o *Item) GetUnitPrice() float64 {
 	if o == nil || o.UnitPrice.Get() == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.UnitPrice.Get()
@@ -265,7 +234,7 @@ func (o *Item) GetUnitPrice() float32 {
 // GetUnitPriceOk returns a tuple with the UnitPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Item) GetUnitPriceOk() (*float32, bool) {
+func (o *Item) GetUnitPriceOk() (*float64, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -281,8 +250,8 @@ func (o *Item) HasUnitPrice() bool {
 	return false
 }
 
-// SetUnitPrice gets a reference to the given NullableFloat32 and assigns it to the UnitPrice field.
-func (o *Item) SetUnitPrice(v float32) {
+// SetUnitPrice gets a reference to the given NullableFloat64 and assigns it to the UnitPrice field.
+func (o *Item) SetUnitPrice(v float64) {
 	o.UnitPrice.Set(&v)
 }
 // SetUnitPriceNil sets the value for UnitPrice to be an explicit nil
@@ -296,9 +265,9 @@ func (o *Item) UnsetUnitPrice() {
 }
 
 // GetPurchasePrice returns the PurchasePrice field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Item) GetPurchasePrice() float32 {
+func (o *Item) GetPurchasePrice() float64 {
 	if o == nil || o.PurchasePrice.Get() == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.PurchasePrice.Get()
@@ -307,7 +276,7 @@ func (o *Item) GetPurchasePrice() float32 {
 // GetPurchasePriceOk returns a tuple with the PurchasePrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Item) GetPurchasePriceOk() (*float32, bool) {
+func (o *Item) GetPurchasePriceOk() (*float64, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -323,8 +292,8 @@ func (o *Item) HasPurchasePrice() bool {
 	return false
 }
 
-// SetPurchasePrice gets a reference to the given NullableFloat32 and assigns it to the PurchasePrice field.
-func (o *Item) SetPurchasePrice(v float32) {
+// SetPurchasePrice gets a reference to the given NullableFloat64 and assigns it to the PurchasePrice field.
+func (o *Item) SetPurchasePrice(v float64) {
 	o.PurchasePrice.Set(&v)
 }
 // SetPurchasePriceNil sets the value for PurchasePrice to be an explicit nil
@@ -570,6 +539,71 @@ func (o *Item) SetFieldMappings(v map[string]interface{}) {
 	o.FieldMappings = v
 }
 
+// GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
+func (o *Item) GetModifiedAt() time.Time {
+	if o == nil || o.ModifiedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ModifiedAt
+}
+
+// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Item) GetModifiedAtOk() (*time.Time, bool) {
+	if o == nil || o.ModifiedAt == nil {
+		return nil, false
+	}
+	return o.ModifiedAt, true
+}
+
+// HasModifiedAt returns a boolean if a field has been set.
+func (o *Item) HasModifiedAt() bool {
+	if o != nil && o.ModifiedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
+func (o *Item) SetModifiedAt(v time.Time) {
+	o.ModifiedAt = &v
+}
+
+// GetRemoteData returns the RemoteData field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Item) GetRemoteData() []RemoteData {
+	if o == nil  {
+		var ret []RemoteData
+		return ret
+	}
+	return o.RemoteData
+}
+
+// GetRemoteDataOk returns a tuple with the RemoteData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Item) GetRemoteDataOk() (*[]RemoteData, bool) {
+	if o == nil || o.RemoteData == nil {
+		return nil, false
+	}
+	return &o.RemoteData, true
+}
+
+// HasRemoteData returns a boolean if a field has been set.
+func (o *Item) HasRemoteData() bool {
+	if o != nil && o.RemoteData != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteData gets a reference to the given []RemoteData and assigns it to the RemoteData field.
+func (o *Item) SetRemoteData(v []RemoteData) {
+	o.RemoteData = v
+}
+
 func (o Item) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -577,9 +611,6 @@ func (o Item) MarshalJSON() ([]byte, error) {
 	}
 	if o.RemoteId.IsSet() {
 		toSerialize["remote_id"] = o.RemoteId.Get()
-	}
-	if o.RemoteData != nil {
-		toSerialize["remote_data"] = o.RemoteData
 	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
@@ -610,6 +641,12 @@ func (o Item) MarshalJSON() ([]byte, error) {
 	}
 	if o.FieldMappings != nil {
 		toSerialize["field_mappings"] = o.FieldMappings
+	}
+	if o.ModifiedAt != nil {
+		toSerialize["modified_at"] = o.ModifiedAt
+	}
+	if o.RemoteData != nil {
+		toSerialize["remote_data"] = o.RemoteData
 	}
 	return json.Marshal(toSerialize)
 }
