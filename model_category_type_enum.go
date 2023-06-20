@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// CategoryTypeEnum the model 'CategoryTypeEnum'
+// CategoryTypeEnum * `CLASS` - CLASS * `DEPARTMENT` - DEPARTMENT
 type CategoryTypeEnum string
 
 // apologies but this is to get around an import error

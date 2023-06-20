@@ -6,17 +6,18 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] [readonly] 
 **RemoteId** | Pointer to **NullableString** | The third-party API ID of the matching object. | [optional] 
-**RemoteData** | Pointer to [**[]RemoteData**](RemoteData.md) |  | [optional] [readonly] 
 **Name** | Pointer to **NullableString** | The item&#39;s name. | [optional] 
-**Status** | Pointer to [**NullableStatus7d1Enum**](Status7d1Enum.md) | The item&#39;s status. | [optional] 
-**UnitPrice** | Pointer to **NullableFloat32** | The item&#39;s unit price. | [optional] 
-**PurchasePrice** | Pointer to **NullableFloat32** | The price at which the item is purchased from a vendor. | [optional] 
+**Status** | Pointer to [**NullableStatus7d1Enum**](Status7d1Enum.md) | The item&#39;s status.  * &#x60;ACTIVE&#x60; - ACTIVE * &#x60;ARCHIVED&#x60; - ARCHIVED | [optional] 
+**UnitPrice** | Pointer to **NullableFloat64** | The item&#39;s unit price. | [optional] 
+**PurchasePrice** | Pointer to **NullableFloat64** | The price at which the item is purchased from a vendor. | [optional] 
 **PurchaseAccount** | Pointer to **NullableString** | References the default account used to record a purchase of the item. | [optional] 
 **SalesAccount** | Pointer to **NullableString** | References the default account used to record a sale. | [optional] 
 **Company** | Pointer to **NullableString** | The company the item belongs to. | [optional] 
 **RemoteUpdatedAt** | Pointer to **NullableTime** | When the third party&#39;s item note was updated. | [optional] 
 **RemoteWasDeleted** | Pointer to **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
 **FieldMappings** | Pointer to **map[string]interface{}** |  | [optional] [readonly] 
+**ModifiedAt** | Pointer to **time.Time** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 
+**RemoteData** | Pointer to [**[]RemoteData**](RemoteData.md) |  | [optional] [readonly] 
 
 ## Methods
 
@@ -97,41 +98,6 @@ HasRemoteId returns a boolean if a field has been set.
 `func (o *Item) UnsetRemoteId()`
 
 UnsetRemoteId ensures that no value is present for RemoteId, not even an explicit nil
-### GetRemoteData
-
-`func (o *Item) GetRemoteData() []RemoteData`
-
-GetRemoteData returns the RemoteData field if non-nil, zero value otherwise.
-
-### GetRemoteDataOk
-
-`func (o *Item) GetRemoteDataOk() (*[]RemoteData, bool)`
-
-GetRemoteDataOk returns a tuple with the RemoteData field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRemoteData
-
-`func (o *Item) SetRemoteData(v []RemoteData)`
-
-SetRemoteData sets RemoteData field to given value.
-
-### HasRemoteData
-
-`func (o *Item) HasRemoteData() bool`
-
-HasRemoteData returns a boolean if a field has been set.
-
-### SetRemoteDataNil
-
-`func (o *Item) SetRemoteDataNil(b bool)`
-
- SetRemoteDataNil sets the value for RemoteData to be an explicit nil
-
-### UnsetRemoteData
-`func (o *Item) UnsetRemoteData()`
-
-UnsetRemoteData ensures that no value is present for RemoteData, not even an explicit nil
 ### GetName
 
 `func (o *Item) GetName() string`
@@ -204,20 +170,20 @@ HasStatus returns a boolean if a field has been set.
 UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetUnitPrice
 
-`func (o *Item) GetUnitPrice() float32`
+`func (o *Item) GetUnitPrice() float64`
 
 GetUnitPrice returns the UnitPrice field if non-nil, zero value otherwise.
 
 ### GetUnitPriceOk
 
-`func (o *Item) GetUnitPriceOk() (*float32, bool)`
+`func (o *Item) GetUnitPriceOk() (*float64, bool)`
 
 GetUnitPriceOk returns a tuple with the UnitPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnitPrice
 
-`func (o *Item) SetUnitPrice(v float32)`
+`func (o *Item) SetUnitPrice(v float64)`
 
 SetUnitPrice sets UnitPrice field to given value.
 
@@ -239,20 +205,20 @@ HasUnitPrice returns a boolean if a field has been set.
 UnsetUnitPrice ensures that no value is present for UnitPrice, not even an explicit nil
 ### GetPurchasePrice
 
-`func (o *Item) GetPurchasePrice() float32`
+`func (o *Item) GetPurchasePrice() float64`
 
 GetPurchasePrice returns the PurchasePrice field if non-nil, zero value otherwise.
 
 ### GetPurchasePriceOk
 
-`func (o *Item) GetPurchasePriceOk() (*float32, bool)`
+`func (o *Item) GetPurchasePriceOk() (*float64, bool)`
 
 GetPurchasePriceOk returns a tuple with the PurchasePrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPurchasePrice
 
-`func (o *Item) SetPurchasePrice(v float32)`
+`func (o *Item) SetPurchasePrice(v float64)`
 
 SetPurchasePrice sets PurchasePrice field to given value.
 
@@ -472,6 +438,66 @@ HasFieldMappings returns a boolean if a field has been set.
 `func (o *Item) UnsetFieldMappings()`
 
 UnsetFieldMappings ensures that no value is present for FieldMappings, not even an explicit nil
+### GetModifiedAt
+
+`func (o *Item) GetModifiedAt() time.Time`
+
+GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
+
+### GetModifiedAtOk
+
+`func (o *Item) GetModifiedAtOk() (*time.Time, bool)`
+
+GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifiedAt
+
+`func (o *Item) SetModifiedAt(v time.Time)`
+
+SetModifiedAt sets ModifiedAt field to given value.
+
+### HasModifiedAt
+
+`func (o *Item) HasModifiedAt() bool`
+
+HasModifiedAt returns a boolean if a field has been set.
+
+### GetRemoteData
+
+`func (o *Item) GetRemoteData() []RemoteData`
+
+GetRemoteData returns the RemoteData field if non-nil, zero value otherwise.
+
+### GetRemoteDataOk
+
+`func (o *Item) GetRemoteDataOk() (*[]RemoteData, bool)`
+
+GetRemoteDataOk returns a tuple with the RemoteData field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoteData
+
+`func (o *Item) SetRemoteData(v []RemoteData)`
+
+SetRemoteData sets RemoteData field to given value.
+
+### HasRemoteData
+
+`func (o *Item) HasRemoteData() bool`
+
+HasRemoteData returns a boolean if a field has been set.
+
+### SetRemoteDataNil
+
+`func (o *Item) SetRemoteDataNil(b bool)`
+
+ SetRemoteDataNil sets the value for RemoteData to be an explicit nil
+
+### UnsetRemoteData
+`func (o *Item) UnsetRemoteData()`
+
+UnsetRemoteData ensures that no value is present for RemoteData, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

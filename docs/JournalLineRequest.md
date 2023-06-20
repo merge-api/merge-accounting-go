@@ -6,11 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RemoteId** | Pointer to **NullableString** | The third-party API ID of the matching object. | [optional] 
 **Account** | Pointer to **NullableString** |  | [optional] 
-**NetAmount** | Pointer to **NullableFloat32** | The value of the line item including taxes and other fees. | [optional] 
+**NetAmount** | Pointer to **NullableFloat64** | The value of the line item including taxes and other fees. | [optional] 
 **TrackingCategory** | Pointer to **NullableString** |  | [optional] 
 **TrackingCategories** | Pointer to **[]string** |  | [optional] 
 **Contact** | Pointer to **NullableString** |  | [optional] 
 **Description** | Pointer to **NullableString** | The line&#39;s description. | [optional] 
+**ExchangeRate** | Pointer to **NullableFloat64** | The journal line item&#39;s exchange rate. | [optional] 
 **IntegrationParams** | Pointer to **map[string]interface{}** |  | [optional] 
 **LinkedAccountParams** | Pointer to **map[string]interface{}** |  | [optional] 
 
@@ -105,20 +106,20 @@ HasAccount returns a boolean if a field has been set.
 UnsetAccount ensures that no value is present for Account, not even an explicit nil
 ### GetNetAmount
 
-`func (o *JournalLineRequest) GetNetAmount() float32`
+`func (o *JournalLineRequest) GetNetAmount() float64`
 
 GetNetAmount returns the NetAmount field if non-nil, zero value otherwise.
 
 ### GetNetAmountOk
 
-`func (o *JournalLineRequest) GetNetAmountOk() (*float32, bool)`
+`func (o *JournalLineRequest) GetNetAmountOk() (*float64, bool)`
 
 GetNetAmountOk returns a tuple with the NetAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetAmount
 
-`func (o *JournalLineRequest) SetNetAmount(v float32)`
+`func (o *JournalLineRequest) SetNetAmount(v float64)`
 
 SetNetAmount sets NetAmount field to given value.
 
@@ -268,6 +269,41 @@ HasDescription returns a boolean if a field has been set.
 `func (o *JournalLineRequest) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetExchangeRate
+
+`func (o *JournalLineRequest) GetExchangeRate() float64`
+
+GetExchangeRate returns the ExchangeRate field if non-nil, zero value otherwise.
+
+### GetExchangeRateOk
+
+`func (o *JournalLineRequest) GetExchangeRateOk() (*float64, bool)`
+
+GetExchangeRateOk returns a tuple with the ExchangeRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExchangeRate
+
+`func (o *JournalLineRequest) SetExchangeRate(v float64)`
+
+SetExchangeRate sets ExchangeRate field to given value.
+
+### HasExchangeRate
+
+`func (o *JournalLineRequest) HasExchangeRate() bool`
+
+HasExchangeRate returns a boolean if a field has been set.
+
+### SetExchangeRateNil
+
+`func (o *JournalLineRequest) SetExchangeRateNil(b bool)`
+
+ SetExchangeRateNil sets the value for ExchangeRate to be an explicit nil
+
+### UnsetExchangeRate
+`func (o *JournalLineRequest) UnsetExchangeRate()`
+
+UnsetExchangeRate ensures that no value is present for ExchangeRate, not even an explicit nil
 ### GetIntegrationParams
 
 `func (o *JournalLineRequest) GetIntegrationParams() map[string]interface{}`

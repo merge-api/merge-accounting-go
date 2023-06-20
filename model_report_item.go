@@ -13,6 +13,7 @@ package merge_accounting_client
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // ReportItem # The ReportItem Object ### Description The `ReportItem` object is used to represent a report item for a Balance Sheet, Cash Flow Statement or Profit and Loss Report.  ### Usage Example Fetch from the `GET BalanceSheet` endpoint and view the balance sheet's report items.
@@ -22,10 +23,12 @@ type ReportItem struct {
 	// The report item's name.
 	Name NullableString `json:"name,omitempty"`
 	// The report item's value.
-	Value NullableFloat32 `json:"value,omitempty"`
+	Value NullableFloat64 `json:"value,omitempty"`
 	SubItems *map[string]interface{} `json:"sub_items,omitempty"`
 	// The company the report item belongs to.
 	Company NullableString `json:"company,omitempty"`
+	// This is the datetime that this object was last updated by Merge
+	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// raw json response by property name
 	ResponseRaw map[string]json.RawMessage `json:"-"`
 }
@@ -132,9 +135,9 @@ func (o *ReportItem) UnsetName() {
 }
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ReportItem) GetValue() float32 {
+func (o *ReportItem) GetValue() float64 {
 	if o == nil || o.Value.Get() == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Value.Get()
@@ -143,7 +146,7 @@ func (o *ReportItem) GetValue() float32 {
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ReportItem) GetValueOk() (*float32, bool) {
+func (o *ReportItem) GetValueOk() (*float64, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -159,8 +162,8 @@ func (o *ReportItem) HasValue() bool {
 	return false
 }
 
-// SetValue gets a reference to the given NullableFloat32 and assigns it to the Value field.
-func (o *ReportItem) SetValue(v float32) {
+// SetValue gets a reference to the given NullableFloat64 and assigns it to the Value field.
+func (o *ReportItem) SetValue(v float64) {
 	o.Value.Set(&v)
 }
 // SetValueNil sets the value for Value to be an explicit nil
@@ -247,6 +250,38 @@ func (o *ReportItem) UnsetCompany() {
 	o.Company.Unset()
 }
 
+// GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
+func (o *ReportItem) GetModifiedAt() time.Time {
+	if o == nil || o.ModifiedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ModifiedAt
+}
+
+// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReportItem) GetModifiedAtOk() (*time.Time, bool) {
+	if o == nil || o.ModifiedAt == nil {
+		return nil, false
+	}
+	return o.ModifiedAt, true
+}
+
+// HasModifiedAt returns a boolean if a field has been set.
+func (o *ReportItem) HasModifiedAt() bool {
+	if o != nil && o.ModifiedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
+func (o *ReportItem) SetModifiedAt(v time.Time) {
+	o.ModifiedAt = &v
+}
+
 func (o ReportItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.RemoteId.IsSet() {
@@ -263,6 +298,9 @@ func (o ReportItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.Company.IsSet() {
 		toSerialize["company"] = o.Company.Get()
+	}
+	if o.ModifiedAt != nil {
+		toSerialize["modified_at"] = o.ModifiedAt
 	}
 	return json.Marshal(toSerialize)
 }

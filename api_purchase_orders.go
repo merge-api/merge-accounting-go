@@ -190,6 +190,8 @@ type ApiPurchaseOrdersListRequest struct {
 	cursor *string
 	includeDeletedData *bool
 	includeRemoteData *bool
+	issueDateAfter *time.Time
+	issueDateBefore *time.Time
 	modifiedAfter *time.Time
 	modifiedBefore *time.Time
 	pageSize *int32
@@ -224,6 +226,14 @@ func (r ApiPurchaseOrdersListRequest) IncludeDeletedData(includeDeletedData bool
 }
 func (r ApiPurchaseOrdersListRequest) IncludeRemoteData(includeRemoteData bool) ApiPurchaseOrdersListRequest {
 	r.includeRemoteData = &includeRemoteData
+	return r
+}
+func (r ApiPurchaseOrdersListRequest) IssueDateAfter(issueDateAfter time.Time) ApiPurchaseOrdersListRequest {
+	r.issueDateAfter = &issueDateAfter
+	return r
+}
+func (r ApiPurchaseOrdersListRequest) IssueDateBefore(issueDateBefore time.Time) ApiPurchaseOrdersListRequest {
+	r.issueDateBefore = &issueDateBefore
 	return r
 }
 func (r ApiPurchaseOrdersListRequest) ModifiedAfter(modifiedAfter time.Time) ApiPurchaseOrdersListRequest {
@@ -313,6 +323,12 @@ func (a *PurchaseOrdersApiService) PurchaseOrdersListExecute(r ApiPurchaseOrders
 	}
 	if r.includeRemoteData != nil {
 		localVarQueryParams.Add("include_remote_data", parameterToString(*r.includeRemoteData, ""))
+	}
+	if r.issueDateAfter != nil {
+		localVarQueryParams.Add("issue_date_after", parameterToString(*r.issueDateAfter, ""))
+	}
+	if r.issueDateBefore != nil {
+		localVarQueryParams.Add("issue_date_before", parameterToString(*r.issueDateBefore, ""))
 	}
 	if r.modifiedAfter != nil {
 		localVarQueryParams.Add("modified_after", parameterToString(*r.modifiedAfter, ""))

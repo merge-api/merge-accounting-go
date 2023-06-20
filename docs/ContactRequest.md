@@ -4,15 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RemoteId** | Pointer to **NullableString** | The third-party API ID of the matching object. | [optional] 
 **Name** | Pointer to **NullableString** | The contact&#39;s name. | [optional] 
 **IsSupplier** | Pointer to **NullableBool** | Whether the contact is a supplier. | [optional] 
 **IsCustomer** | Pointer to **NullableBool** | Whether the contact is a customer. | [optional] 
 **EmailAddress** | Pointer to **NullableString** | The contact&#39;s email address. | [optional] 
 **TaxNumber** | Pointer to **NullableString** | The contact&#39;s tax number. | [optional] 
-**Status** | Pointer to [**NullableStatus7d1Enum**](Status7d1Enum.md) | The contact&#39;s status | [optional] 
+**Status** | Pointer to [**NullableStatus7d1Enum**](Status7d1Enum.md) | The contact&#39;s status  * &#x60;ACTIVE&#x60; - ACTIVE * &#x60;ARCHIVED&#x60; - ARCHIVED | [optional] 
 **Currency** | Pointer to **NullableString** | The currency the contact&#39;s transactions are in. | [optional] 
-**RemoteUpdatedAt** | Pointer to **NullableTime** | When the third party&#39;s contact was updated. | [optional] 
 **Company** | Pointer to **NullableString** | The company the contact belongs to. | [optional] 
 **Addresses** | Pointer to **[]string** | &#x60;Address&#x60; object IDs for the given &#x60;Contacts&#x60; object. | [optional] 
 **PhoneNumbers** | Pointer to [**[]AccountingPhoneNumberRequest**](AccountingPhoneNumberRequest.md) | &#x60;AccountingPhoneNumber&#x60; object for the given &#x60;Contacts&#x60; object. | [optional] 
@@ -38,41 +36,6 @@ NewContactRequestWithDefaults instantiates a new ContactRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetRemoteId
-
-`func (o *ContactRequest) GetRemoteId() string`
-
-GetRemoteId returns the RemoteId field if non-nil, zero value otherwise.
-
-### GetRemoteIdOk
-
-`func (o *ContactRequest) GetRemoteIdOk() (*string, bool)`
-
-GetRemoteIdOk returns a tuple with the RemoteId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRemoteId
-
-`func (o *ContactRequest) SetRemoteId(v string)`
-
-SetRemoteId sets RemoteId field to given value.
-
-### HasRemoteId
-
-`func (o *ContactRequest) HasRemoteId() bool`
-
-HasRemoteId returns a boolean if a field has been set.
-
-### SetRemoteIdNil
-
-`func (o *ContactRequest) SetRemoteIdNil(b bool)`
-
- SetRemoteIdNil sets the value for RemoteId to be an explicit nil
-
-### UnsetRemoteId
-`func (o *ContactRequest) UnsetRemoteId()`
-
-UnsetRemoteId ensures that no value is present for RemoteId, not even an explicit nil
 ### GetName
 
 `func (o *ContactRequest) GetName() string`
@@ -318,41 +281,6 @@ HasCurrency returns a boolean if a field has been set.
 `func (o *ContactRequest) UnsetCurrency()`
 
 UnsetCurrency ensures that no value is present for Currency, not even an explicit nil
-### GetRemoteUpdatedAt
-
-`func (o *ContactRequest) GetRemoteUpdatedAt() time.Time`
-
-GetRemoteUpdatedAt returns the RemoteUpdatedAt field if non-nil, zero value otherwise.
-
-### GetRemoteUpdatedAtOk
-
-`func (o *ContactRequest) GetRemoteUpdatedAtOk() (*time.Time, bool)`
-
-GetRemoteUpdatedAtOk returns a tuple with the RemoteUpdatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRemoteUpdatedAt
-
-`func (o *ContactRequest) SetRemoteUpdatedAt(v time.Time)`
-
-SetRemoteUpdatedAt sets RemoteUpdatedAt field to given value.
-
-### HasRemoteUpdatedAt
-
-`func (o *ContactRequest) HasRemoteUpdatedAt() bool`
-
-HasRemoteUpdatedAt returns a boolean if a field has been set.
-
-### SetRemoteUpdatedAtNil
-
-`func (o *ContactRequest) SetRemoteUpdatedAtNil(b bool)`
-
- SetRemoteUpdatedAtNil sets the value for RemoteUpdatedAt to be an explicit nil
-
-### UnsetRemoteUpdatedAt
-`func (o *ContactRequest) UnsetRemoteUpdatedAt()`
-
-UnsetRemoteUpdatedAt ensures that no value is present for RemoteUpdatedAt, not even an explicit nil
 ### GetCompany
 
 `func (o *ContactRequest) GetCompany() string`

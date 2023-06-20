@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Number** | Pointer to **NullableString** | The phone number. | [optional] 
 **Type** | Pointer to **NullableString** | The phone number&#39;s type. | [optional] 
+**ModifiedAt** | Pointer to **time.Time** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 
 
 ## Methods
 
@@ -96,6 +97,31 @@ HasType returns a boolean if a field has been set.
 `func (o *AccountingPhoneNumber) UnsetType()`
 
 UnsetType ensures that no value is present for Type, not even an explicit nil
+### GetModifiedAt
+
+`func (o *AccountingPhoneNumber) GetModifiedAt() time.Time`
+
+GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
+
+### GetModifiedAtOk
+
+`func (o *AccountingPhoneNumber) GetModifiedAtOk() (*time.Time, bool)`
+
+GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifiedAt
+
+`func (o *AccountingPhoneNumber) SetModifiedAt(v time.Time)`
+
+SetModifiedAt sets ModifiedAt field to given value.
+
+### HasModifiedAt
+
+`func (o *AccountingPhoneNumber) HasModifiedAt() bool`
+
+HasModifiedAt returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -45,6 +45,8 @@ type ApiCreditNotesListRequest struct {
 	remoteFields *string
 	remoteId *string
 	showEnumOrigins *string
+	transactionDateAfter *time.Time
+	transactionDateBefore *time.Time
 }
 
 func (r ApiCreditNotesListRequest) XAccountToken(xAccountToken string) ApiCreditNotesListRequest {
@@ -97,6 +99,14 @@ func (r ApiCreditNotesListRequest) RemoteId(remoteId string) ApiCreditNotesListR
 }
 func (r ApiCreditNotesListRequest) ShowEnumOrigins(showEnumOrigins string) ApiCreditNotesListRequest {
 	r.showEnumOrigins = &showEnumOrigins
+	return r
+}
+func (r ApiCreditNotesListRequest) TransactionDateAfter(transactionDateAfter time.Time) ApiCreditNotesListRequest {
+	r.transactionDateAfter = &transactionDateAfter
+	return r
+}
+func (r ApiCreditNotesListRequest) TransactionDateBefore(transactionDateBefore time.Time) ApiCreditNotesListRequest {
+	r.transactionDateBefore = &transactionDateBefore
 	return r
 }
 
@@ -180,6 +190,12 @@ func (a *CreditNotesApiService) CreditNotesListExecute(r ApiCreditNotesListReque
 	}
 	if r.showEnumOrigins != nil {
 		localVarQueryParams.Add("show_enum_origins", parameterToString(*r.showEnumOrigins, ""))
+	}
+	if r.transactionDateAfter != nil {
+		localVarQueryParams.Add("transaction_date_after", parameterToString(*r.transactionDateAfter, ""))
+	}
+	if r.transactionDateBefore != nil {
+		localVarQueryParams.Add("transaction_date_before", parameterToString(*r.transactionDateBefore, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

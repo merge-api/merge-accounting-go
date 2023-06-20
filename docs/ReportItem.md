@@ -6,9 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RemoteId** | Pointer to **NullableString** | The third-party API ID of the matching object. | [optional] 
 **Name** | Pointer to **NullableString** | The report item&#39;s name. | [optional] 
-**Value** | Pointer to **NullableFloat32** | The report item&#39;s value. | [optional] 
+**Value** | Pointer to **NullableFloat64** | The report item&#39;s value. | [optional] 
 **SubItems** | Pointer to **map[string]interface{}** |  | [optional] [readonly] 
 **Company** | Pointer to **NullableString** | The company the report item belongs to. | [optional] 
+**ModifiedAt** | Pointer to **time.Time** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 
 
 ## Methods
 
@@ -101,20 +102,20 @@ HasName returns a boolean if a field has been set.
 UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetValue
 
-`func (o *ReportItem) GetValue() float32`
+`func (o *ReportItem) GetValue() float64`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *ReportItem) GetValueOk() (*float32, bool)`
+`func (o *ReportItem) GetValueOk() (*float64, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *ReportItem) SetValue(v float32)`
+`func (o *ReportItem) SetValue(v float64)`
 
 SetValue sets Value field to given value.
 
@@ -194,6 +195,31 @@ HasCompany returns a boolean if a field has been set.
 `func (o *ReportItem) UnsetCompany()`
 
 UnsetCompany ensures that no value is present for Company, not even an explicit nil
+### GetModifiedAt
+
+`func (o *ReportItem) GetModifiedAt() time.Time`
+
+GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
+
+### GetModifiedAtOk
+
+`func (o *ReportItem) GetModifiedAtOk() (*time.Time, bool)`
+
+GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifiedAt
+
+`func (o *ReportItem) SetModifiedAt(v time.Time)`
+
+SetModifiedAt sets ModifiedAt field to given value.
+
+### HasModifiedAt
+
+`func (o *ReportItem) HasModifiedAt() bool`
+
+HasModifiedAt returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Integration** | Pointer to **NullableString** | The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://www.merge.dev/docs/basics/integration-metadata/. | [optional] 
 **LinkExpiryMins** | Pointer to **int32** | An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30. | [optional] [default to 30]
 **ShouldCreateMagicLinkUrl** | Pointer to **NullableBool** | Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/product/integrations,-fast.-say-hello-to-magic-link/. | [optional] [default to false]
+**CommonModels** | Pointer to [**[]CommonModelScopesBodyRequest**](CommonModelScopesBodyRequest.md) | An array of objects to specify the models and fields that will be disabled for a given Linked Account. Each object uses model_id, enabled_actions, and disabled_fields to specify the model, method, and fields that are scoped for a given Linked Account. | [optional] 
 
 ## Methods
 
@@ -206,6 +207,41 @@ HasShouldCreateMagicLinkUrl returns a boolean if a field has been set.
 `func (o *EndUserDetailsRequest) UnsetShouldCreateMagicLinkUrl()`
 
 UnsetShouldCreateMagicLinkUrl ensures that no value is present for ShouldCreateMagicLinkUrl, not even an explicit nil
+### GetCommonModels
+
+`func (o *EndUserDetailsRequest) GetCommonModels() []CommonModelScopesBodyRequest`
+
+GetCommonModels returns the CommonModels field if non-nil, zero value otherwise.
+
+### GetCommonModelsOk
+
+`func (o *EndUserDetailsRequest) GetCommonModelsOk() (*[]CommonModelScopesBodyRequest, bool)`
+
+GetCommonModelsOk returns a tuple with the CommonModels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommonModels
+
+`func (o *EndUserDetailsRequest) SetCommonModels(v []CommonModelScopesBodyRequest)`
+
+SetCommonModels sets CommonModels field to given value.
+
+### HasCommonModels
+
+`func (o *EndUserDetailsRequest) HasCommonModels() bool`
+
+HasCommonModels returns a boolean if a field has been set.
+
+### SetCommonModelsNil
+
+`func (o *EndUserDetailsRequest) SetCommonModelsNil(b bool)`
+
+ SetCommonModelsNil sets the value for CommonModels to be an explicit nil
+
+### UnsetCommonModels
+`func (o *EndUserDetailsRequest) UnsetCommonModels()`
+
+UnsetCommonModels ensures that no value is present for CommonModels, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

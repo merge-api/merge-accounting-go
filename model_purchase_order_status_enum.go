@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// PurchaseOrderStatusEnum the model 'PurchaseOrderStatusEnum'
+// PurchaseOrderStatusEnum * `DRAFT` - DRAFT * `SUBMITTED` - SUBMITTED * `AUTHORIZED` - AUTHORIZED * `BILLED` - BILLED * `DELETED` - DELETED
 type PurchaseOrderStatusEnum string
 
 // apologies but this is to get around an import error

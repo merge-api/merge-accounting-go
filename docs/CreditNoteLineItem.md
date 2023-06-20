@@ -15,8 +15,9 @@ Name | Type | Description | Notes
 **TrackingCategory** | Pointer to **NullableString** | The credit note line item&#39;s associated tracking category. | [optional] 
 **TrackingCategories** | **[]string** | The credit note line item&#39;s associated tracking categories. | 
 **Account** | Pointer to **NullableString** | The credit note line item&#39;s account. | [optional] 
-**Company** | Pointer to **NullableString** | The company the credit note line item belongs to. | [optional] 
+**Company** | Pointer to **NullableString** | The company the credit note belongs to. | [optional] 
 **RemoteId** | Pointer to **NullableString** | The third-party API ID of the matching object. | [optional] 
+**ModifiedAt** | Pointer to **time.Time** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 
 
 ## Methods
 
@@ -477,6 +478,31 @@ HasRemoteId returns a boolean if a field has been set.
 `func (o *CreditNoteLineItem) UnsetRemoteId()`
 
 UnsetRemoteId ensures that no value is present for RemoteId, not even an explicit nil
+### GetModifiedAt
+
+`func (o *CreditNoteLineItem) GetModifiedAt() time.Time`
+
+GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
+
+### GetModifiedAtOk
+
+`func (o *CreditNoteLineItem) GetModifiedAtOk() (*time.Time, bool)`
+
+GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifiedAt
+
+`func (o *CreditNoteLineItem) SetModifiedAt(v time.Time)`
+
+SetModifiedAt sets ModifiedAt field to given value.
+
+### HasModifiedAt
+
+`func (o *CreditNoteLineItem) HasModifiedAt() bool`
+
+HasModifiedAt returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

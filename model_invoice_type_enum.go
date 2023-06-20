@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// InvoiceTypeEnum the model 'InvoiceTypeEnum'
+// InvoiceTypeEnum * `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE * `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE
 type InvoiceTypeEnum string
 
 // apologies but this is to get around an import error

@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RemoteId** | Pointer to **NullableString** | The third-party API ID of the matching object. | [optional] 
 **FileName** | Pointer to **NullableString** | The attachment&#39;s name. | [optional] 
 **FileUrl** | Pointer to **NullableString** | The attachment&#39;s url. | [optional] 
 **Company** | Pointer to **NullableString** | The company the accounting attachment belongs to. | [optional] 
@@ -30,41 +29,6 @@ NewAccountingAttachmentRequestWithDefaults instantiates a new AccountingAttachme
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetRemoteId
-
-`func (o *AccountingAttachmentRequest) GetRemoteId() string`
-
-GetRemoteId returns the RemoteId field if non-nil, zero value otherwise.
-
-### GetRemoteIdOk
-
-`func (o *AccountingAttachmentRequest) GetRemoteIdOk() (*string, bool)`
-
-GetRemoteIdOk returns a tuple with the RemoteId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRemoteId
-
-`func (o *AccountingAttachmentRequest) SetRemoteId(v string)`
-
-SetRemoteId sets RemoteId field to given value.
-
-### HasRemoteId
-
-`func (o *AccountingAttachmentRequest) HasRemoteId() bool`
-
-HasRemoteId returns a boolean if a field has been set.
-
-### SetRemoteIdNil
-
-`func (o *AccountingAttachmentRequest) SetRemoteIdNil(b bool)`
-
- SetRemoteIdNil sets the value for RemoteId to be an explicit nil
-
-### UnsetRemoteId
-`func (o *AccountingAttachmentRequest) UnsetRemoteId()`
-
-UnsetRemoteId ensures that no value is present for RemoteId, not even an explicit nil
 ### GetFileName
 
 `func (o *AccountingAttachmentRequest) GetFileName() string`

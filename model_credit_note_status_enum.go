@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// CreditNoteStatusEnum the model 'CreditNoteStatusEnum'
+// CreditNoteStatusEnum * `SUBMITTED` - SUBMITTED * `AUTHORIZED` - AUTHORIZED * `PAID` - PAID
 type CreditNoteStatusEnum string
 
 // apologies but this is to get around an import error

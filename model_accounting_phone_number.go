@@ -13,6 +13,7 @@ package merge_accounting_client
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // AccountingPhoneNumber # The AccountingPhoneNumber Object ### Description The `AccountingPhoneNumber` object is used to represent a contact's or company's phone number.  ### Usage Example Fetch from the `GET CompanyInfo` endpoint and view the company's phone numbers.
@@ -21,6 +22,8 @@ type AccountingPhoneNumber struct {
 	Number NullableString `json:"number,omitempty"`
 	// The phone number's type.
 	Type NullableString `json:"type,omitempty"`
+	// This is the datetime that this object was last updated by Merge
+	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// raw json response by property name
 	ResponseRaw map[string]json.RawMessage `json:"-"`
 }
@@ -126,6 +129,38 @@ func (o *AccountingPhoneNumber) UnsetType() {
 	o.Type.Unset()
 }
 
+// GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
+func (o *AccountingPhoneNumber) GetModifiedAt() time.Time {
+	if o == nil || o.ModifiedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ModifiedAt
+}
+
+// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountingPhoneNumber) GetModifiedAtOk() (*time.Time, bool) {
+	if o == nil || o.ModifiedAt == nil {
+		return nil, false
+	}
+	return o.ModifiedAt, true
+}
+
+// HasModifiedAt returns a boolean if a field has been set.
+func (o *AccountingPhoneNumber) HasModifiedAt() bool {
+	if o != nil && o.ModifiedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
+func (o *AccountingPhoneNumber) SetModifiedAt(v time.Time) {
+	o.ModifiedAt = &v
+}
+
 func (o AccountingPhoneNumber) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Number.IsSet() {
@@ -133,6 +168,9 @@ func (o AccountingPhoneNumber) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type.IsSet() {
 		toSerialize["type"] = o.Type.Get()
+	}
+	if o.ModifiedAt != nil {
+		toSerialize["modified_at"] = o.ModifiedAt
 	}
 	return json.Marshal(toSerialize)
 }

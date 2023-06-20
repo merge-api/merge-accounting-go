@@ -27,6 +27,7 @@ type ConditionSchema struct {
 	FieldName NullableString `json:"field_name"`
 	// Whether this condition can only be applied once. If false, the condition can be AND'd together multiple times.
 	IsUnique *bool `json:"is_unique,omitempty"`
+	// The type of value(s) that can be set for this condition.  * `BOOLEAN` - BOOLEAN * `DATE` - DATE * `DATE_TIME` - DATE_TIME * `INTEGER` - INTEGER * `FLOAT` - FLOAT * `STRING` - STRING * `LIST_OF_STRINGS` - LIST_OF_STRINGS
 	ConditionType ConditionTypeEnum `json:"condition_type"`
 	// The schemas for the operators that can be used on a condition.
 	Operators []OperatorSchema `json:"operators"`

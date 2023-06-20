@@ -17,8 +17,6 @@ import (
 
 // AccountingAttachmentRequest # The Accounting Attachment Object ### Description The `AccountingAttachment` object is used to represent a company's attachments.  ### Usage Example Fetch from the `LIST AccountingAttachments` endpoint and view a company's attachments.
 type AccountingAttachmentRequest struct {
-	// The third-party API ID of the matching object.
-	RemoteId NullableString `json:"remote_id,omitempty"`
 	// The attachment's name.
 	FileName NullableString `json:"file_name,omitempty"`
 	// The attachment's url.
@@ -46,48 +44,6 @@ func NewAccountingAttachmentRequest() *AccountingAttachmentRequest {
 func NewAccountingAttachmentRequestWithDefaults() *AccountingAttachmentRequest {
 	this := AccountingAttachmentRequest{}
 	return &this
-}
-
-// GetRemoteId returns the RemoteId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AccountingAttachmentRequest) GetRemoteId() string {
-	if o == nil || o.RemoteId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.RemoteId.Get()
-}
-
-// GetRemoteIdOk returns a tuple with the RemoteId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AccountingAttachmentRequest) GetRemoteIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.RemoteId.Get(), o.RemoteId.IsSet()
-}
-
-// HasRemoteId returns a boolean if a field has been set.
-func (o *AccountingAttachmentRequest) HasRemoteId() bool {
-	if o != nil && o.RemoteId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRemoteId gets a reference to the given NullableString and assigns it to the RemoteId field.
-func (o *AccountingAttachmentRequest) SetRemoteId(v string) {
-	o.RemoteId.Set(&v)
-}
-// SetRemoteIdNil sets the value for RemoteId to be an explicit nil
-func (o *AccountingAttachmentRequest) SetRemoteIdNil() {
-	o.RemoteId.Set(nil)
-}
-
-// UnsetRemoteId ensures that no value is present for RemoteId, not even an explicit nil
-func (o *AccountingAttachmentRequest) UnsetRemoteId() {
-	o.RemoteId.Unset()
 }
 
 // GetFileName returns the FileName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -284,9 +240,6 @@ func (o *AccountingAttachmentRequest) SetLinkedAccountParams(v map[string]interf
 
 func (o AccountingAttachmentRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.RemoteId.IsSet() {
-		toSerialize["remote_id"] = o.RemoteId.Get()
-	}
 	if o.FileName.IsSet() {
 		toSerialize["file_name"] = o.FileName.Get()
 	}

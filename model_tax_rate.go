@@ -13,25 +13,28 @@ package merge_accounting_client
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // TaxRate # The TaxRate Object ### Description The `TaxRate` object is used to represent a tax rate.  ### Usage Example Fetch from the `LIST TaxRates` endpoint and view tax rates relevant to a company.
 type TaxRate struct {
-	Id *string `json:"id,omitempty"`
-	// The third-party API ID of the matching object.
-	RemoteId NullableString `json:"remote_id,omitempty"`
-	RemoteData []RemoteData `json:"remote_data,omitempty"`
 	// The tax rate's description.
 	Description NullableString `json:"description,omitempty"`
 	// The tax rate's total tax rate.
-	TotalTaxRate NullableFloat32 `json:"total_tax_rate,omitempty"`
+	TotalTaxRate NullableFloat64 `json:"total_tax_rate,omitempty"`
 	// The tax rate's effective tax rate.
-	EffectiveTaxRate NullableFloat32 `json:"effective_tax_rate,omitempty"`
+	EffectiveTaxRate NullableFloat64 `json:"effective_tax_rate,omitempty"`
 	// The company the tax rate belongs to.
 	Company NullableString `json:"company,omitempty"`
 	// Indicates whether or not this object has been deleted by third party webhooks.
 	RemoteWasDeleted *bool `json:"remote_was_deleted,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// The third-party API ID of the matching object.
+	RemoteId NullableString `json:"remote_id,omitempty"`
 	FieldMappings map[string]interface{} `json:"field_mappings,omitempty"`
+	// This is the datetime that this object was last updated by Merge
+	ModifiedAt *time.Time `json:"modified_at,omitempty"`
+	RemoteData []RemoteData `json:"remote_data,omitempty"`
 	// raw json response by property name
 	ResponseRaw map[string]json.RawMessage `json:"-"`
 }
@@ -51,113 +54,6 @@ func NewTaxRate() *TaxRate {
 func NewTaxRateWithDefaults() *TaxRate {
 	this := TaxRate{}
 	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *TaxRate) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TaxRate) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *TaxRate) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *TaxRate) SetId(v string) {
-	o.Id = &v
-}
-
-// GetRemoteId returns the RemoteId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TaxRate) GetRemoteId() string {
-	if o == nil || o.RemoteId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.RemoteId.Get()
-}
-
-// GetRemoteIdOk returns a tuple with the RemoteId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TaxRate) GetRemoteIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.RemoteId.Get(), o.RemoteId.IsSet()
-}
-
-// HasRemoteId returns a boolean if a field has been set.
-func (o *TaxRate) HasRemoteId() bool {
-	if o != nil && o.RemoteId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRemoteId gets a reference to the given NullableString and assigns it to the RemoteId field.
-func (o *TaxRate) SetRemoteId(v string) {
-	o.RemoteId.Set(&v)
-}
-// SetRemoteIdNil sets the value for RemoteId to be an explicit nil
-func (o *TaxRate) SetRemoteIdNil() {
-	o.RemoteId.Set(nil)
-}
-
-// UnsetRemoteId ensures that no value is present for RemoteId, not even an explicit nil
-func (o *TaxRate) UnsetRemoteId() {
-	o.RemoteId.Unset()
-}
-
-// GetRemoteData returns the RemoteData field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TaxRate) GetRemoteData() []RemoteData {
-	if o == nil  {
-		var ret []RemoteData
-		return ret
-	}
-	return o.RemoteData
-}
-
-// GetRemoteDataOk returns a tuple with the RemoteData field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TaxRate) GetRemoteDataOk() (*[]RemoteData, bool) {
-	if o == nil || o.RemoteData == nil {
-		return nil, false
-	}
-	return &o.RemoteData, true
-}
-
-// HasRemoteData returns a boolean if a field has been set.
-func (o *TaxRate) HasRemoteData() bool {
-	if o != nil && o.RemoteData != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRemoteData gets a reference to the given []RemoteData and assigns it to the RemoteData field.
-func (o *TaxRate) SetRemoteData(v []RemoteData) {
-	o.RemoteData = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -203,9 +99,9 @@ func (o *TaxRate) UnsetDescription() {
 }
 
 // GetTotalTaxRate returns the TotalTaxRate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TaxRate) GetTotalTaxRate() float32 {
+func (o *TaxRate) GetTotalTaxRate() float64 {
 	if o == nil || o.TotalTaxRate.Get() == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.TotalTaxRate.Get()
@@ -214,7 +110,7 @@ func (o *TaxRate) GetTotalTaxRate() float32 {
 // GetTotalTaxRateOk returns a tuple with the TotalTaxRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TaxRate) GetTotalTaxRateOk() (*float32, bool) {
+func (o *TaxRate) GetTotalTaxRateOk() (*float64, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -230,8 +126,8 @@ func (o *TaxRate) HasTotalTaxRate() bool {
 	return false
 }
 
-// SetTotalTaxRate gets a reference to the given NullableFloat32 and assigns it to the TotalTaxRate field.
-func (o *TaxRate) SetTotalTaxRate(v float32) {
+// SetTotalTaxRate gets a reference to the given NullableFloat64 and assigns it to the TotalTaxRate field.
+func (o *TaxRate) SetTotalTaxRate(v float64) {
 	o.TotalTaxRate.Set(&v)
 }
 // SetTotalTaxRateNil sets the value for TotalTaxRate to be an explicit nil
@@ -245,9 +141,9 @@ func (o *TaxRate) UnsetTotalTaxRate() {
 }
 
 // GetEffectiveTaxRate returns the EffectiveTaxRate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TaxRate) GetEffectiveTaxRate() float32 {
+func (o *TaxRate) GetEffectiveTaxRate() float64 {
 	if o == nil || o.EffectiveTaxRate.Get() == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.EffectiveTaxRate.Get()
@@ -256,7 +152,7 @@ func (o *TaxRate) GetEffectiveTaxRate() float32 {
 // GetEffectiveTaxRateOk returns a tuple with the EffectiveTaxRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TaxRate) GetEffectiveTaxRateOk() (*float32, bool) {
+func (o *TaxRate) GetEffectiveTaxRateOk() (*float64, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -272,8 +168,8 @@ func (o *TaxRate) HasEffectiveTaxRate() bool {
 	return false
 }
 
-// SetEffectiveTaxRate gets a reference to the given NullableFloat32 and assigns it to the EffectiveTaxRate field.
-func (o *TaxRate) SetEffectiveTaxRate(v float32) {
+// SetEffectiveTaxRate gets a reference to the given NullableFloat64 and assigns it to the EffectiveTaxRate field.
+func (o *TaxRate) SetEffectiveTaxRate(v float64) {
 	o.EffectiveTaxRate.Set(&v)
 }
 // SetEffectiveTaxRateNil sets the value for EffectiveTaxRate to be an explicit nil
@@ -360,6 +256,80 @@ func (o *TaxRate) SetRemoteWasDeleted(v bool) {
 	o.RemoteWasDeleted = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *TaxRate) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TaxRate) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *TaxRate) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *TaxRate) SetId(v string) {
+	o.Id = &v
+}
+
+// GetRemoteId returns the RemoteId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TaxRate) GetRemoteId() string {
+	if o == nil || o.RemoteId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.RemoteId.Get()
+}
+
+// GetRemoteIdOk returns a tuple with the RemoteId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TaxRate) GetRemoteIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.RemoteId.Get(), o.RemoteId.IsSet()
+}
+
+// HasRemoteId returns a boolean if a field has been set.
+func (o *TaxRate) HasRemoteId() bool {
+	if o != nil && o.RemoteId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteId gets a reference to the given NullableString and assigns it to the RemoteId field.
+func (o *TaxRate) SetRemoteId(v string) {
+	o.RemoteId.Set(&v)
+}
+// SetRemoteIdNil sets the value for RemoteId to be an explicit nil
+func (o *TaxRate) SetRemoteIdNil() {
+	o.RemoteId.Set(nil)
+}
+
+// UnsetRemoteId ensures that no value is present for RemoteId, not even an explicit nil
+func (o *TaxRate) UnsetRemoteId() {
+	o.RemoteId.Unset()
+}
+
 // GetFieldMappings returns the FieldMappings field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TaxRate) GetFieldMappings() map[string]interface{} {
 	if o == nil  {
@@ -393,17 +363,73 @@ func (o *TaxRate) SetFieldMappings(v map[string]interface{}) {
 	o.FieldMappings = v
 }
 
+// GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
+func (o *TaxRate) GetModifiedAt() time.Time {
+	if o == nil || o.ModifiedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ModifiedAt
+}
+
+// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TaxRate) GetModifiedAtOk() (*time.Time, bool) {
+	if o == nil || o.ModifiedAt == nil {
+		return nil, false
+	}
+	return o.ModifiedAt, true
+}
+
+// HasModifiedAt returns a boolean if a field has been set.
+func (o *TaxRate) HasModifiedAt() bool {
+	if o != nil && o.ModifiedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
+func (o *TaxRate) SetModifiedAt(v time.Time) {
+	o.ModifiedAt = &v
+}
+
+// GetRemoteData returns the RemoteData field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TaxRate) GetRemoteData() []RemoteData {
+	if o == nil  {
+		var ret []RemoteData
+		return ret
+	}
+	return o.RemoteData
+}
+
+// GetRemoteDataOk returns a tuple with the RemoteData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TaxRate) GetRemoteDataOk() (*[]RemoteData, bool) {
+	if o == nil || o.RemoteData == nil {
+		return nil, false
+	}
+	return &o.RemoteData, true
+}
+
+// HasRemoteData returns a boolean if a field has been set.
+func (o *TaxRate) HasRemoteData() bool {
+	if o != nil && o.RemoteData != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoteData gets a reference to the given []RemoteData and assigns it to the RemoteData field.
+func (o *TaxRate) SetRemoteData(v []RemoteData) {
+	o.RemoteData = v
+}
+
 func (o TaxRate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.RemoteId.IsSet() {
-		toSerialize["remote_id"] = o.RemoteId.Get()
-	}
-	if o.RemoteData != nil {
-		toSerialize["remote_data"] = o.RemoteData
-	}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
@@ -419,8 +445,20 @@ func (o TaxRate) MarshalJSON() ([]byte, error) {
 	if o.RemoteWasDeleted != nil {
 		toSerialize["remote_was_deleted"] = o.RemoteWasDeleted
 	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.RemoteId.IsSet() {
+		toSerialize["remote_id"] = o.RemoteId.Get()
+	}
 	if o.FieldMappings != nil {
 		toSerialize["field_mappings"] = o.FieldMappings
+	}
+	if o.ModifiedAt != nil {
+		toSerialize["modified_at"] = o.ModifiedAt
+	}
+	if o.RemoteData != nil {
+		toSerialize["remote_data"] = o.RemoteData
 	}
 	return json.Marshal(toSerialize)
 }

@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// ClassificationEnum the model 'ClassificationEnum'
+// ClassificationEnum * `ASSET` - ASSET * `EQUITY` - EQUITY * `EXPENSE` - EXPENSE * `LIABILITY` - LIABILITY * `REVENUE` - REVENUE
 type ClassificationEnum string
 
 // apologies but this is to get around an import error
